@@ -1,7 +1,7 @@
 import React from "react";
-import AuthLayout from "../layouts/AuthLayout";
-import Label from "../components/auth/Label";
-import Button from "../components/auth/Button";
+import AuthLayout from "../components/templates/AuthLayout";
+import Label from "../components/molecules/InputField";
+import Button from "../components/atoms/Button";
 
 function Register() {
   return (
@@ -70,11 +70,17 @@ function Register() {
             Lupa Password
           </a>
         </p>
-        <Button textButton="Masuk" color="text-white" bgcolor="bg-[#3ECF4C]" />
+        <Button
+          textButton="Masuk"
+          color="text-white"
+          bgcolor="bg-[#3ECF4C]"
+          size="w-[518px] h-[42px]"
+        />
         <Button
           textButton="Daftar"
           color="text-[#3ECF4C]"
           bgcolor="bg-[#E2FCD9CC]"
+          size="w-[518px] h-[42px]"
         />
         <div className="flex items-center gap-4">
           <div className="h-px w-full bg-[#4A505C]"></div>
@@ -86,6 +92,7 @@ function Register() {
           textButton="Masuk dengan Google"
           color="text-[#4A505C]"
           font="font-dm-sans text-base font-bold leading-[22.4px]"
+          size="w-[518px] h-[42px]"
         />
       </AuthLayout>
     </div>

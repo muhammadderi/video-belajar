@@ -1,4 +1,4 @@
-function Navbar() {
+function NavbarAuth() {
   return (
     <nav className="w-screen h-20 border-1 flex justify-between py-3 px-32">
       <img
@@ -10,4 +10,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavbarAuth;

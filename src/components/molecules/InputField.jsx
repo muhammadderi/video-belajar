@@ -1,4 +1,4 @@
-function Label({ label, id, type, placeholder, eye }) {
+const InputField = ({ label, id, type, placeholder, eye }) => {
   return (
     <div className="flex flex-col">
       <label
@@ -30,6 +30,6 @@ function Label({ label, id, type, placeholder, eye }) {
       </div>
     </div>
   );
-}
+};
 
-export default Label;
+export default InputField;

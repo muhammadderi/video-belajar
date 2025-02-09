@@ -1,7 +1,6 @@
-import Label from "../components/auth/Label";
-import Navbar from "../components/auth/Navbar";
+import Navbar from "../atoms/NavbarAuth";
 
-function AuthLayout({ children, title, subtitle }) {
+const AuthLayout = ({ children, title, subtitle }) => {
   return (
     <div>
       <Navbar />
@@ -22,6 +21,6 @@ function AuthLayout({ children, title, subtitle }) {
       </div>
     </div>
   );
-}
+};
 
 export default AuthLayout;

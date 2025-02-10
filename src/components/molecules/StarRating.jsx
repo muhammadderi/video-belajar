@@ -1,6 +1,6 @@
 const StarRating = () => {
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between justify-items-center items-center">
       <span className="flex">
         <img
           className="w-[18px] h-[18px]"

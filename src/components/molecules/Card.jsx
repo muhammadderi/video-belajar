@@ -11,16 +11,16 @@ const Card = ({
   mainSubTitle,
 }) => {
   return (
-    <div className="w-[360px] h-[426px] rounded-[10px] border p-[20px] mb-3">
+    <div className="w-[360px] h-[420px] rounded-[10px] border p-[20px] mb-3 ">
       <div className="w-[320px] h-[193px] rounded-[10px]">
-        <img src={img} alt={alt} />
-        <h6 className="font-poppins font-semibold text-lg leading[21.6px] text-[#222325]">
+        <img src={img} alt={alt} className="w-[344px] h-[200px] pb-2" />
+        <h6 className="font-poppins font-semibold text-lg leading[21.6px] text-[#222325] pb-1">
           {title}
         </h6>
-        <p className="font-dm-sans font-medium text-base leading-[22.4px]">
+        <p className="font-dm-sans  text-base leading-[22.4px] text-gray-500 pb-1">
           {subTitle}
         </p>
-        <div className="flex justify-center gap-[10px]">
+        <div className="flex justify-items-center gap-[10px] pb-1">
           <div>
             <img className="w-[40px] h-[40px]" src={imgMain} alt={altMain} />
           </div>
@@ -28,8 +28,8 @@ const Card = ({
             <span className="font-dm-sans font-medium leading-[22.4px] tracking-[0.2px]">
               {mainTitle}
             </span>
-            <span className="font-dm-sans font-normal text-[14px] leading-[19.6px] tracking-[0.2px] text-gray-800">
-              {mainSubTitle}
+            <span className="font-dm-sans font-normal text-[14px] leading-[19.6px] tracking-[0.2px] text-gray-500">
+              {mainSubTitle} <b>Gojek</b>
             </span>
           </div>
         </div>

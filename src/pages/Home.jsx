@@ -36,11 +36,11 @@ const Home = () => {
           <h3 className="font-poppins font-semibold text-[32px] leading-[35.2px]">
             Koleksi Video Pembelajaran Unggulan
           </h3>
-          <p className="font-dm-sans font-medium py-2 text-base leading-[22.4px] tracking-tight text-gray-800 ">
+          <p className="font-dm-sans font-medium py-2 text-base leading-[22.4px] tracking-tight text-gray-500 ">
             Jelajahi Dunia Pengetahuan Melalui Pilihan Kami!
           </p>
           <div className="w-[612px] h-[52px]">
-            <ul className="font-dm-sans font-medium py-2 text-base leading-[22.4px] tracking-tight text-gray-800 flex gap-10">
+            <ul className="font-dm-sans font-medium py-2 text-base leading-[22.4px] tracking-tight text-gray-500 flex gap-10">
               <li>
                 <a href="">Semua Kelas</a>
               </li>

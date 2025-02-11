@@ -2,6 +2,7 @@ import Button from "../components/atoms/Button";
 import Navbar from "../components/atoms/NavbarHome";
 import SectionWrapper from "../components/atoms/SectionWrapper";
 import CardList from "../components/organisms/CardList";
+import Footer from "../components/organisms/Footer";
 
 const Home = () => {
   return (
@@ -75,7 +76,7 @@ const Home = () => {
               Daftarkan dirimu untuk mendapatkan informasi terbaru dan penawaran
               spesial dari program-program terbaik hariesok.id
             </p>
-            <div class="relative w-80">
+            <div class="relative w-[525px]">
               <input
                 type="text"
                 class="w-full border rounded-lg pl-3 pr-12 py-2 focus:ring focus:ring-blue-300"
@@ -87,6 +88,8 @@ const Home = () => {
             </div>
           </article>
         </SectionWrapper>
+
+        <Footer />
       </div>
     </>
   );

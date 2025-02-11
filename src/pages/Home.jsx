@@ -60,6 +60,33 @@ const Home = () => {
           </div>
           <CardList />
         </section>
+        <SectionWrapper
+          height="h-[400px] relative bg-cover bg-center"
+          url="bg-[url(/backgroundImages/bg-2.png)]"
+        >
+          <article className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80 flex items-center justify-center flex-col px-[140px] gap-2">
+            <h3 className="font-dm-sans font-medium text-lg leading-6 tracking-[0.2px] text-[#C1C2C4]">
+              NEWSLETTER
+            </h3>
+            <h1 className="font-poppins font-bold text-3xl leading-[35.2px] text-center text-white">
+              Mau Belajar Lebih Banyak?
+            </h1>
+            <p className="font-dm-sans font-normal text-base leading-[22.4px] tracking-[0.2px] text-[#F4F5FA] text-center">
+              Daftarkan dirimu untuk mendapatkan informasi terbaru dan penawaran
+              spesial dari program-program terbaik hariesok.id
+            </p>
+            <div class="relative w-80">
+              <input
+                type="text"
+                class="w-full border rounded-lg pl-3 pr-12 py-2 focus:ring focus:ring-blue-300"
+                placeholder="Masukkan Emailmu"
+              />
+              <button class="absolute inset-y-0 right-0 px-3 m-1 bg-[#FFBD3A] text-white font-dm-sans font-bold text-base rounded-lg hover:bg-orange-600 leading-[22.4px]">
+                Subscribe
+              </button>
+            </div>
+          </article>
+        </SectionWrapper>
       </div>
     </>
   );

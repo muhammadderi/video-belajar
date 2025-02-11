@@ -20,7 +20,7 @@ const Card = ({
         <p className="font-dm-sans  text-base leading-[22.4px] text-gray-500 pb-1">
           {subTitle}
         </p>
-        <div className="flex justify-items-center gap-[10px] pb-1">
+        <div className="flex justify-items-center gap-[10px]">
           <div>
             <img className="w-[40px] h-[40px]" src={imgMain} alt={altMain} />
           </div>

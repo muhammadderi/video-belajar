@@ -12,9 +12,13 @@ const Card = ({
 }) => {
   return (
     <div className="w-[360px] h-[420px] rounded-[10px] border p-[20px] mb-3 ">
-      <div className="w-[320px] h-[193px] rounded-[10px]">
-        <img src={img} alt={alt} className="w-[344px] h-[200px] pb-2" />
-        <h6 className="font-poppins font-semibold text-lg leading[21.6px] text-[#222325] pb-1">
+      <div className="w-[320px] md:h-[193px] h-[147px] rounded-[10px]">
+        <img
+          src={img}
+          alt={alt}
+          className="md:w-[344px] md:h-[200px] pb-2 w-[82px] h-[82px]"
+        />
+        <h6 className="font-poppins font-semibold text-[16px] md:text-lg leading[21.6px] text-[#222325] pb-1">
           {title}
         </h6>
         <p className="font-dm-sans  text-base leading-[22.4px] text-gray-500 pb-1">

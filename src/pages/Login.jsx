@@ -20,34 +20,35 @@ function Login() {
         <p className="flex justify-end">
           <a
             href="#"
-            className="font-dm-sans font-medium text-base leading-[22.4px] text-[#4A505C]"
+            className="font-dm-sans font-medium md:text-base text-[14px] leading-[22.4px] text-[#4A505C]"
           >
             Lupa Password
           </a>
         </p>
         <Button
           textButton="Masuk"
-          color="text-white"
+          color="text-white text-[14px] md:text-[16px]"
           bgcolor="bg-[#3ECF4C]"
-          size="w-[518px] h-[42px]"
+          size="md:w-[518px] md:h-[42px] w-[280px] h-[34px]"
         />
         <Button
           textButton="Daftar"
-          color="text-[#3ECF4C]"
+          color="text-[#3ECF4C] text-[14px] md:text-[16px]"
           bgcolor="bg-[#E2FCD9CC]"
-          size="w-[518px] h-[42px]"
+          size="md:w-[518px] md:h-[42px] w-[280px] h-[34px]"
         />
         <div className="flex items-center gap-4">
           <div className="h-px w-full bg-[#4A505C]"></div>
-          <span className="text-[#4A505C] text-base">atau</span>
+          <span className="text-[#4A505C] md:text-base text-[14px]">atau</span>
           <div className="h-px w-full bg-[#4A505C]"></div>
         </div>
         <Button
           img="\src\assets\auth\google-icon.png"
+          imgStyle="w-[20px] h-[20px]"
           textButton="Masuk dengan Google"
           color="text-[#4A505C]"
-          font="font-dm-sans text-base font-bold leading-[22.4px]"
-          size="w-[518px] h-[42px]"
+          font="font-dm-sans md:text-base text-[14px] font-bold leading-[22.4px]"
+          size="md:w-[518px] md:h-[42px] w-[280px] h-[34px] border"
         />
       </AuthLayout>
     </div>

@@ -113,7 +113,7 @@ const CardList = () => {
   ];
 
   return (
-    <div className="grid grid-flow-row md:grid-cols-3 gap-2">
+    <div className="md:grid md:grid-flow-row md:grid-cols-3 md:gap-1">
       {cardItem.map((item, index) => (
         <Card
           key={index}

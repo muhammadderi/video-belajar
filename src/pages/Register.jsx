@@ -66,9 +66,12 @@ function Register() {
       localStorage.setItem("users", JSON.stringify(users));
 
       setFormData({
-        username: "",
+        fullName: "",
         email: "",
+        phone: "",
         password: "",
+        confirmPassword: "",
+        country: "",
       });
 
       navigate("/");

@@ -1,23 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import AuthLayout from "../components/templates/AuthLayout";
 import Label from "../components/molecules/InputField";
 import Button from "../components/atoms/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const users = JSON.parse(localStorage.getItem("users")) || [];
+  const navigate = useNavigate();
+
+  const [formLogin, setFormLogin] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormLogin({
+      ...formLogin,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (
+      users.some((user) => user.email === formLogin.email) &&
+      users.some((user) => user.password === formLogin.password)
+    ) {
+      localStorage.setItem("loginUsers", JSON.stringify(users));
+
+      setFormLogin({
+        email: "",
+        password: "",
+      });
+
+      navigate("/home");
+    } else alert("Email atau password tidak sesuai");
+  };
+
   return (
     <div>
       <AuthLayout
         title="Masuk Ke Akun"
         subtitle="Yuk, lanjutin belajarmu di videobelajar"
+        onSubmit={handleSubmit}
       >
-        <Label id="email" type="email" label="Email" />
+        <Label
+          id="email"
+          name="email"
+          type="email"
+          label="Email"
+          value={formLogin.email}
+          onChange={handleChange}
+        />
         <Label
           label="Password"
           id="password"
           type="password"
-          eye="\src\assets\auth\mdi_eye-off.png"
+          // eye="\src\assets\auth\mdi_eye-off.png"
+          name="password"
+          value={formLogin.password}
+          onChange={handleChange}
         />
         <p className="flex justify-end">
           <a

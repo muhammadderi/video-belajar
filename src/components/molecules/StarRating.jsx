@@ -27,11 +27,11 @@ const StarRating = () => {
           src="src\assets\home\section-2\emptyStar.png"
           alt="emptyStar"
         />
-        <span className="font-dm-sans font-medium text-sm leading-[19.6px] text-gray-800">
+        <span className="font-dm-sans font-medium text-sm leading-[19.6px] text-gray-500">
           3.5 (86)
         </span>
       </span>
-      <h4 className="font-poppins font-semibold text-[24px] leading-[28.8px] text-[#3ECF4C]">
+      <h4 className="font-poppins font-semibold md:text-[24px] md:leading-[28.8px] text-[20px] leading-[24px] text-[#3ECF4C]">
         Rp 300K
       </h4>
     </div>

@@ -1,12 +1,7 @@
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
-
 const NavbarHome = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div>
-      <nav className="flex justify-between items-center px-6 py-3 border-b border-[#3A35411F] md:px-[120px]">
+      <nav className="flex justify-between items-center px-6 py-3 border-b border-[#3A35411F] md:px-[120px] w-full">
         {/* Logo */}
         <div>
           <img
@@ -16,39 +11,26 @@ const NavbarHome = () => {
           />
         </div>
 
-        {/* Menu di layar besar (hilang di layar kecil) */}
         <div className="hidden sm:flex gap-5 items-center">
-          <p className="font-dm-sans font-medium text-base leading-[22.4px] text-[#333333AD]">
+          <p className="font-dm-sans font-medium text-base leading-[22.4px] text-[#333333AD] hidden md:block">
             Kategori
           </p>
           <img
             src="/src/assets/home/user.png"
             alt="user"
-            className="w-[44px] h-[44px]"
+            className="w-[44px] h-[44px] hidden md:block"
           />
         </div>
 
-        {/* Tombol Hamburger (hanya muncul di layar kecil) */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="sm:hidden text-gray-700"
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-
-        {/* Menu Dropdown di layar kecil */}
-        {isOpen && (
-          <div className="absolute top-16 left-0 w-full bg-white border-b border-gray-200 p-4 sm:hidden">
-            <p className="font-dm-sans font-medium text-base leading-[22.4px] text-[#333333AD]">
-              Kategori
-            </p>
+        <div className="sm:hidden">
+          <button>
             <img
-              src="/src/assets/home/user.png"
-              alt="user"
-              className="w-[44px] h-[44px] mt-2"
+              src="/Logo/humberger.png"
+              alt="humberger-logo"
+              className="w-[24px] h-[24px]"
             />
-          </div>
-        )}
+          </button>
+        </div>
       </nav>
     </div>
   );

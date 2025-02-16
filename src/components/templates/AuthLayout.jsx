@@ -1,6 +1,6 @@
 import Navbar from "../atoms/NavbarAuth";
 
-const AuthLayout = ({ children, title, subtitle }) => {
+const AuthLayout = ({ children, title, subtitle, onSubmit }) => {
   return (
     <div>
       <Navbar />
@@ -14,7 +14,10 @@ const AuthLayout = ({ children, title, subtitle }) => {
               {subtitle}
             </p>
           </div>
-          <form className="md:w-[518px] w-[280px] h-auto flex flex-col gap-6">
+          <form
+            className="md:w-[518px] w-[280px] h-auto flex flex-col gap-6"
+            onSubmit={onSubmit}
+          >
             {children}
           </form>
         </div>

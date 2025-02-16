@@ -1,4 +1,13 @@
-const InputField = ({ label, id, type, placeholder, eye, value, onChange }) => {
+const InputField = ({
+  label,
+  id,
+  type,
+  placeholder,
+  eye,
+  value,
+  onChange,
+  name,
+}) => {
   return (
     <div className="flex flex-col">
       <label
@@ -8,12 +17,13 @@ const InputField = ({ label, id, type, placeholder, eye, value, onChange }) => {
         {label}{" "}
         <sup className="text-red-500 font-poppins font-normal text-base leading-6">
           *
-        </sup>
+        </sup>{" "}
       </label>
       <div className="relative w-full">
         <input
           className="md:w-[518px] h-[48px] w-[280px]  border rounded-md border-[#F1F1F1] p-3"
           id={id}
+          name={name}
           type={type}
           placeholder={placeholder}
           value={value}

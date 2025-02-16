@@ -2,6 +2,7 @@ import React from "react";
 import AuthLayout from "../components/templates/AuthLayout";
 import Label from "../components/molecules/InputField";
 import Button from "../components/atoms/Button";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
@@ -30,13 +31,17 @@ function Login() {
           color="text-white text-[14px] md:text-[16px]"
           bgcolor="bg-[#3ECF4C]"
           size="md:w-[518px] md:h-[42px] w-[280px] h-[34px]"
+          type="submit"
         />
-        <Button
-          textButton="Daftar"
-          color="text-[#3ECF4C] text-[14px] md:text-[16px]"
-          bgcolor="bg-[#E2FCD9CC]"
-          size="md:w-[518px] md:h-[42px] w-[280px] h-[34px]"
-        />
+        <Link to="/register">
+          <Button
+            textButton="Daftar"
+            color="text-[#3ECF4C] text-[14px] md:text-[16px]"
+            bgcolor="bg-[#E2FCD9CC]"
+            size="md:w-[518px] md:h-[42px] w-[280px] h-[34px]"
+            type="button"
+          />
+        </Link>
         <div className="flex items-center gap-4">
           <div className="h-px w-full bg-[#4A505C]"></div>
           <span className="text-[#4A505C] md:text-base text-[14px]">atau</span>

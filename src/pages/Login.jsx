@@ -5,6 +5,7 @@ import Button from "../components/atoms/Button";
 import { Link } from "react-router-dom";
 
 function Login() {
+  const users = JSON.parse(localStorage.getItem("users")) || [];
   return (
     <div>
       <AuthLayout

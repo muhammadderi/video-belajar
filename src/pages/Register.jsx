@@ -35,27 +35,41 @@ function Register() {
   };
 
   const getPasswordStrength = (password) => {
-    if (password.length < 8) return "Password Weak ❌";
-    if (!/[A-Z]/.test(password)) return "Add an uppercase letter 🔠";
-    if (!/[a-z]/.test(password)) return "Add a lowercase letter 🔡";
-    if (!/\d/.test(password)) return "Add a number 🔢";
-    if (!/[@$!%*?&]/.test(password)) return "Add a special character ❗";
-    return "Password Strong ✅";
+    if (password.length < 8) return "Kata sandi lemah ❌";
+    if (!/[A-Z]/.test(password)) return "Tambahkan huruf besar 🔠";
+    if (!/[a-z]/.test(password)) return "Tambahkan huruf kecil 🔡";
+    if (!/\d/.test(password)) return "Tambahkan angka 🔢";
+    if (!/[@$!%*?&]/.test(password)) return "Tambahkan spesial karakter ❗";
+    return "Kata sandi kuat ✅";
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const emailExist = users.some((users) => users.email === formData.email);
+
     if (!validateNumber[formData.country]?.test(formData.phone)) {
-      alert("Phone Number not valid!!");
+      alert("Nomer telpon tidak valid!!");
     } else if (formData.password !== formData.confirmPassword) {
-      alert("Password and Confirm Password does not match!");
+      alert("Kata sandi dan konfirmasi kata sandi tidak sesuai");
     } else if (
-      getPasswordStrength(formData.password) !== "Password Strong ✅"
+      getPasswordStrength(formData.password) !== "Kata sandi kuat ✅"
     ) {
-      alert("Please change to complexity password");
+      alert("Tolong gunakan kompleksitas password dengan kombinasi dan angka");
+    } else if (emailExist) {
+      alert("Email sudah pernah digunakan!");
     } else {
       alert("Pendaftaran berhasil ");
+
+      users.push(formData);
+      localStorage.setItem("users", JSON.stringify(users));
+
+      setFormData({
+        username: "",
+        email: "",
+        password: "",
+      });
 
       navigate("/");
     }
@@ -138,7 +152,6 @@ function Register() {
           id="confirmPassword"
           name="confirmPassword"
           type="password"
-          eye="src\assets\auth\mdi_eye-off.png"
           value={formData.confirmPassword}
           onChange={handleChange}
         />

@@ -67,24 +67,29 @@ const Home = () => {
           height="h-[400px] relative bg-cover bg-center"
           url="bg-[url(/backgroundImages/bg-2.png)]"
         >
-          <article className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80 flex items-center justify-center flex-col px-[140px] gap-2">
-            <h3 className="font-dm-sans font-medium text-lg leading-6 tracking-[0.2px] text-[#C1C2C4]">
+          <article className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80 flex items-center justify-center flex-col md:px-[140px] px-[20px] gap-2">
+            <h3 className="font-dm-sans font-medium md:text-lg md:leading-6 text-[16px] leading-[22.4px] tracking-[0.2px] text-[#C1C2C4]">
               NEWSLETTER
             </h3>
-            <h1 className="font-poppins font-bold text-3xl leading-[35.2px] text-center text-white">
+            <h1 className="font-poppins font-bold md:text-3xl md:leading-[35.2px] text-[24px] leading-[26.4px] text-center text-white">
               Mau Belajar Lebih Banyak?
             </h1>
-            <p className="font-dm-sans font-normal text-base leading-[22.4px] tracking-[0.2px] text-[#F4F5FA] text-center">
+            <p className="font-dm-sans font-normal md:text-base md:leading-[22.4px] text-[14px] leading-[19.6px] tracking-[0.2px] text-[#F4F5FA] text-center">
               Daftarkan dirimu untuk mendapatkan informasi terbaru dan penawaran
               spesial dari program-program terbaik hariesok.id
             </p>
-            <div className="relative w-[525px]">
-              <input
-                type="text"
-                className="w-full border rounded-lg pl-3 pr-12 py-2 focus:ring focus:ring-blue-300"
-                placeholder="Masukkan Emailmu"
-              />
-              <button className="absolute inset-y-0 right-0 px-3 m-1 bg-[#FFBD3A] text-white font-dm-sans font-bold text-base rounded-lg hover:bg-orange-600 leading-[22.4px]">
+            <div className="md:relative flex flex-col items-center gap-3 md:w-[525px] w-[280px]">
+              <div className="relative w-full">
+                <input
+                  type="text"
+                  className="text-center md:text-left w-full py-[10px] border rounded-lg md:pl-3 md:pr-12 md:py-2 focus:ring focus:ring-blue-300"
+                  placeholder="Masukkan Emailmu"
+                />
+                <button className="absolute inset-y-0 right-0 px-3 bg-[#FFBD3A] text-white font-dm-sans font-bold text-base rounded-lg hover:bg-orange-600 leading-[22.4px] hidden md:block">
+                  Subscribe
+                </button>
+              </div>
+              <button className="w-full md:hidden py-[10px] bg-[#FFBD3A] text-white font-dm-sans font-bold text-base rounded-lg hover:bg-orange-600 leading-[22.4px]">
                 Subscribe
               </button>
             </div>

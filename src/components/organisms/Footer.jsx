@@ -1,25 +1,67 @@
 const Footer = () => {
   return (
     <>
-      <footer className="flex justify-between items-center  px-[120px] h-[400px] border-t border-[#3A35411F]">
-        <div className="h-[220px] w-[352px] flex flex-col gap-2">
+      <footer className="flex flex-col md:flex-row flex justify-between items-start px-6 md:px-[120px] py-6 md:h-[400px] border-t border-[#3A35411F]">
+        <div className="w-full md:w-[352px] flex flex-col gap-2 md:text-center text-left flex-end">
           <img
             src="Logo/FooterLogo.png"
             alt="logo"
-            className="w-[204px] h-[56px]"
+            className="w-[204px] h-[56px] mmd:x-auto md:mx-0"
           />
-          <h3 className="font-dm-sans font-bold font-[18px] leading-[25.2px] tracking-[0.2px]">
+          <h3 className="font-dm-sans text-left font-bold text-[18px] leading-[25.2px] tracking-[0.2px]">
             Gali Potensi Anda Melalui Pembelajaran Video di hariesok.id!
           </h3>
-          <p className="font-normal font-dm-sans text-[16px] leading-[16px] tracking-[0.2px] text-[#222325] ">
+          <p className="ftext-left font-bold ont-normal font-dm-sans text-[16px] leading-[16px] tracking-[0.2px] text-[#222325]">
             Jl. Usman Effendi No. 50 Lowokwaru, Malang
           </p>
-          <span className="font-dm-sans font-normal text-[16px] leading-[22.4px] tracking-[0.2px] text-[#222325]">
+          <span className="text-left font-bold font-dm-sans font-normal text-[16px] leading-[22.4px] tracking-[0.2px] text-[#222325]">
             +62-877-7123-1234
           </span>
         </div>
-        <div>
-          <table className="text-left w-[485px] h-[199px]">
+
+        <div className="w-full md:w-auto">
+          <div className="block sm:hidden tmd:ext-center text-left mt-4">
+            <ul className="font-dm-sans text-base font-medium leading-[22.4px] tracking-[0.2px] text-[#333333AD] space-y-2">
+              <li>
+                <div className="flex items-center justify-between">
+                  <strong>Kategori</strong>
+                  <button>
+                    <img
+                      src="/Logo/arrowRight.png"
+                      alt="arrow-right"
+                      className="w-[24px] h-[24px]"
+                    />
+                  </button>
+                </div>
+              </li>
+              <li>
+                <div className="flex items-center justify-between">
+                  <strong>Perusahaan</strong>
+                  <button>
+                    <img
+                      src="/Logo/arrowRight.png"
+                      alt="arrow-right"
+                      className="w-[24px] h-[24px]"
+                    />
+                  </button>
+                </div>
+              </li>
+              <li>
+                <div className="flex items-center justify-between">
+                  <strong>Komunitas</strong>
+                  <button>
+                    <img
+                      src="/Logo/arrowRight.png"
+                      alt="arrow-right"
+                      className="w-[24px] h-[24px]"
+                    />
+                  </button>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <table className="hidden sm:table text-left w-[485px] h-[199px]">
             <thead>
               <tr className="font-dm-sans font-bold text-base leading-[22.4px]">
                 <th>Kategori</th>
@@ -54,17 +96,24 @@ const Footer = () => {
           </table>
         </div>
       </footer>
-      <hr className="w-[1200px] border-t border-gray-300 mx-auto" />
 
-      <div className="flex justify-between items-center px-[120px] py-[20px] ">
-        <div>
-          <p>@2023 Gerobak Sayur All Rights Reserved.</p>
-        </div>
-        <div className="flex gap-2">
-          <img src="\imagesFooter\link.png" alt="LinkedIn" />
-          <img src="\imagesFooter\fb.png" alt="Facebook" />
-          <img src="\imagesFooter\ig.png" alt="Instagram" />
-          <img src="\imagesFooter\twitter.png" alt="Twitter" />
+      <hr className="w-full border-t border-gray-300" />
+
+      <div className="flex flex-col md:flex-row md:justify-between text-left items-center px-6 md:px-[120px] py-[20px] text-center md:text-left sm:flex flex-col-reverse ">
+        <p className="text-sm">@2023 Gerobak Sayur All Rights Reserved.</p>
+        <div className="flex gap-4 mt-4 md:mt-0">
+          <img
+            src="/imagesFooter/link.png"
+            alt="LinkedIn"
+            className="w-6 h-6"
+          />
+          <img src="/imagesFooter/fb.png" alt="Facebook" className="w-6 h-6" />
+          <img src="/imagesFooter/ig.png" alt="Instagram" className="w-6 h-6" />
+          <img
+            src="/imagesFooter/twitter.png"
+            alt="Twitter"
+            className="w-6 h-6"
+          />
         </div>
       </div>
     </>

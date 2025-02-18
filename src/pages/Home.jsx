@@ -49,16 +49,16 @@ const Home = () => {
               </li>
 
               <li className="hover:underline-offset-8 hover:decoration-4 hover:underline hover:decoration-[#F64920] hover:mb-[10px]">
-                <a href="">Pemasaran</a>
+                <a href="#">Pemasaran</a>
               </li>
               <li className="hover:underline-offset-8 hover:decoration-4 hover:underline hover:decoration-[#F64920] hover:mb-[10px]">
-                <a href="">Desain</a>
+                <a href="#">Desain</a>
               </li>
               <li className="hover:underline-offset-8 hover:decoration-4 hover:underline hover:decoration-[#F64920] hover:mb-[10px]">
-                <a href="">Pengembangan Diri</a>
+                <a href="#">Pengembangan Diri</a>
               </li>
               <li className="hover:underline-offset-8 hover:decoration-4 hover:underline hover:decoration-[#F64920] hover:mb-[10px]">
-                <a href="">Bisnis</a>
+                <a href="#">Bisnis</a>
               </li>
             </ul>
           </div>

@@ -42,8 +42,8 @@ const Home = () => {
           <p className="font-dm-sans font-medium py-2 md:text-base md:leading-[22.4px] text-sm leading-[19.6px] tracking-tight text-gray-500 ">
             Jelajahi Dunia Pengetahuan Melalui Pilihan Kami!
           </p>
-          <div className="w-[612px] h-[52px]">
-            <ul className="font-dm-sans md:font-medium text-sm overflow-hidden py-2 text-base leading-[22.4px] tracking-tight text-gray-500 flex gap-10">
+          <div className="md:w-[612px] w-[360px] h-[52px] box-border">
+            <ul className="md:w-full w-[443px] font-dm-sans md:font-medium text-sm py-2 text-base leading-[22.4px] tracking-tight text-gray-500 flex md:gap-10 gap-5">
               <li>
                 <a href="">Semua Kelas</a>
               </li>

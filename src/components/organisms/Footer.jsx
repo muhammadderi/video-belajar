@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <>
-      <footer className="flex flex-col md:flex-row flex justify-between items-start px-6 md:px-[120px] py-6 md:h-[400px] border-t border-[#3A35411F]">
+      <footer className="flex flex-col md:flex-row flex justify-between items-start px-6 md:px-[120px] md:py-[60px] py-6 md:h-auto border-t border-[#3A35411F]">
         <div className="w-full md:w-[352px] flex flex-col gap-2 md:text-center text-left flex-end">
           <img
             src="Logo/FooterLogo.png"
@@ -99,20 +99,28 @@ const Footer = () => {
 
       <hr className="w-full border-t border-gray-300" />
 
-      <div className="flex flex-col md:flex-row md:justify-between text-left items-center px-6 md:px-[120px] py-[20px] text-center md:text-left sm:flex flex-col-reverse ">
+      <div className="flex flex-col md:flex-row md:justify-between text-left md:items-center md:px-6 md:px-[120px] px-[20px] py-[20px] md:text-center md:text-left sm:flex sm:flex-col-reverse sm:flex-start">
         <p className="text-sm">@2023 Gerobak Sayur All Rights Reserved.</p>
         <div className="flex gap-4 mt-4 md:mt-0">
           <img
             src="/imagesFooter/link.png"
             alt="LinkedIn"
-            className="w-6 h-6"
+            className="w-[35px] h-[35px] "
           />
-          <img src="/imagesFooter/fb.png" alt="Facebook" className="w-6 h-6" />
-          <img src="/imagesFooter/ig.png" alt="Instagram" className="w-6 h-6" />
+          <img
+            src="/imagesFooter/fb.png"
+            alt="Facebook"
+            className="w-[35px] h-[35px] "
+          />
+          <img
+            src="/imagesFooter/ig.png"
+            alt="Instagram"
+            className="w-[35px] h-[35px] "
+          />
           <img
             src="/imagesFooter/twitter.png"
             alt="Twitter"
-            className="w-6 h-6"
+            className="w-[35px] h-[35px] "
           />
         </div>
       </div>

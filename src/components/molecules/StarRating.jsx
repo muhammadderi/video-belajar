@@ -4,27 +4,27 @@ const StarRating = () => {
       <span className="flex">
         <img
           className="w-[18px] h-[18px]"
-          src="src\assets\home\section-2\fullStar.png"
+          src="/star/fullStar.png"
           alt="fullStar"
         />
         <img
           className="w-[18px] h-[18px]"
-          src="src\assets\home\section-2\fullStar.png"
+          src="/star/fullStar.png"
           alt="fullStar"
         />
         <img
           className="w-[18px] h-[18px]"
-          src="src\assets\home\section-2\partialStar.png"
+          src="/star/partialStar.png"
           alt="partialStar"
         />
         <img
           className="w-[18px] h-[18px]"
-          src="src\assets\home\section-2\emptyStar.png"
+          src="/star/emptyStar.png"
           alt="emptyStar"
         />
         <img
           className="w-[18px] h-[18px]"
-          src="src\assets\home\section-2\emptyStar.png"
+          src="/star/emptyStar.png"
           alt="emptyStar"
         />
         <span className="font-dm-sans font-medium text-sm leading-[19.6px] text-gray-500">

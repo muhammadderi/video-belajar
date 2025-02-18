@@ -195,7 +195,7 @@ function Register() {
           <div className="h-px w-full bg-[#4A505C]"></div>
         </div>
         <Button
-          img="\src\assets\auth\google-icon.png"
+          img="/Logo/google-icon.png"
           imgStyle="w-[20px] h-[20px]"
           textButton="Masuk dengan Google"
           color="text-[#4A505C]"

@@ -44,19 +44,20 @@ const Home = () => {
           </p>
           <div className="md:w-[612px] w-[360px] h-[52px] box-border">
             <ul className="md:w-full w-[443px] font-dm-sans md:font-medium text-sm py-2 text-base leading-[22.4px] tracking-tight text-gray-500 flex md:gap-10 gap-5">
-              <li>
-                <a href="">Semua Kelas</a>
+              <li className="relative after:block after:h-[5px] after:bg-[#F64920] after:w-full after:absolute after:left-0 after:bottom-[-10px]">
+                <a href="#">Semua Kelas</a>
               </li>
-              <li>
+
+              <li className="hover:underline-offset-8 hover:decoration-4 hover:underline hover:decoration-[#F64920] hover:mb-[10px]">
                 <a href="">Pemasaran</a>
               </li>
-              <li>
+              <li className="hover:underline-offset-8 hover:decoration-4 hover:underline hover:decoration-[#F64920] hover:mb-[10px]">
                 <a href="">Desain</a>
               </li>
-              <li>
+              <li className="hover:underline-offset-8 hover:decoration-4 hover:underline hover:decoration-[#F64920] hover:mb-[10px]">
                 <a href="">Pengembangan Diri</a>
               </li>
-              <li>
+              <li className="hover:underline-offset-8 hover:decoration-4 hover:underline hover:decoration-[#F64920] hover:mb-[10px]">
                 <a href="">Bisnis</a>
               </li>
             </ul>

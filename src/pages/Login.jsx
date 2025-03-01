@@ -28,13 +28,14 @@ function Login() {
       users.some((user) => user.password === formLogin.password)
     ) {
       localStorage.setItem("loginUsers", JSON.stringify(users));
+      localStorage.setItem("userActive", "true");
 
       setFormLogin({
         email: "",
         password: "",
       });
 
-      navigate("/home");
+      navigate("/");
     } else alert("Email atau password tidak sesuai");
   };
 

@@ -33,7 +33,7 @@ const NavbarHome = () => {
     <>
       {isLogin ? (
         <div>
-          <nav className="fixed z-50 bg-white flex justify-between items-center px-6 py-3 border-b border-[#3A35411F] md:px-[120px] w-full">
+          <nav className="z-50 bg-white flex justify-between items-center px-6 py-3 border-b border-[#3A35411F] md:px-[120px] w-full">
             <div>
               <img
                 src="/Logo/Logo.png"

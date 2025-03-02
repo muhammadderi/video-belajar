@@ -27,7 +27,7 @@ function Login() {
       users.some((user) => user.email === formLogin.email) &&
       users.some((user) => user.password === formLogin.password)
     ) {
-      localStorage.setItem("loginUsers", JSON.stringify(users));
+      localStorage.setItem("loginUsers", JSON.stringify(formLogin));
       localStorage.setItem("userActive", "true");
 
       setFormLogin({

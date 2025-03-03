@@ -130,7 +130,7 @@ function Register() {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full border border-[#3A35411F] p-2 rounded-lg w-64 h-[42px] focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            className="border border-[#3A35411F] p-2 rounded-lg w-64 h-[42px] focus:ring-2 focus:ring-blue-400 focus:outline-none"
           />
         </div>
 

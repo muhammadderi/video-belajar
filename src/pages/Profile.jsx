@@ -9,6 +9,7 @@ const Profile = () => {
     email: "",
     country: "",
     phone: "",
+    sex: "",
   });
 
   useEffect(() => {
@@ -65,13 +66,13 @@ const Profile = () => {
   return (
     <div>
       <NavbarHome />
-      <section className="px-[120px] py-[64px] grid grid-cols-[30%_70%]  w-full">
+      <section className="md:px-[120px] md:py-[64px] md:grid md:grid-cols-[30%_60%] w-full px-[20px] py-[28px]">
         <div className="w-[292px] h-[291px]">
           <h5 className="font-poppins font-semibold text-[20px] leading-[24x]">
             Ubah Profil
           </h5>
           <p className="text-[#333333AD] mb-[10px]">Ubah data diri anda</p>
-          <div className="w-[292px] h-[211px] border rounded-xl p-[24px]">
+          <div className="md:w-[292px] w-[335px] h-[211px] border rounded-xl p-[24px]">
             <p className="fill-[#3A354161] hover:fill-[#FFBD3A] group flex gap-2 text-[#3A354161] font-bold text-[16px] leading-[25.2px] rounded-sm p-[12px] hover:bg-[#FFF7D7CC] hover:text-[#FFBD3A]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +106,7 @@ const Profile = () => {
             </p>
           </div>
         </div>
-        <div className="w-auto h-[308px] rounded-xl border p-[24px]">
+        <div className="w-auto md:h-[308px] rounded-xl border p-[24px]">
           <div className="flex gap-3">
             <img
               src="\src\assets\home\user.png"
@@ -129,8 +130,8 @@ const Profile = () => {
           <br />
           <div>
             <form onSubmit={handleUpdate}>
-              <div className="flex gap-2">
-                <fieldset className="w-[264px] h-[55px] rounded-xl  border border-solid border-gray-300 hover:border-[#3ECF4C]">
+              <div className="md:flex gap-2">
+                <fieldset className="w-[320px] h-[55px] rounded-xl  border border-solid border-gray-300 hover:border-[#3ECF4C]">
                   <legend>Nama Lengkap</legend>
                   <input
                     type="text"
@@ -152,6 +153,20 @@ const Profile = () => {
                     className="outline-none border-none flex-1 bg-transparent px-3"
                   />
                 </fieldset>
+                <fieldset className="md:hidden w-[90px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
+                  <legend>Jenis Kelamin</legend>
+                  <select
+                    name="sex"
+                    id="sex"
+                    value={profile.sex}
+                    onChange={handleChange}
+                    className=" outline-none border-none flex-1 bg-transparent px-3"
+                  >
+                    <option value="man">Laki-laki</option>
+                    <option value="woman">Perempuan</option>
+                  </select>
+                </fieldset>
+
                 <fieldset className="w-[90px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
                   <legend>Kode</legend>
                   <select
@@ -159,7 +174,7 @@ const Profile = () => {
                     id="country"
                     value={profile.country}
                     onChange={handleChange}
-                    className="outline-none border-none flex-1 bg-transparent px-3"
+                    className=" outline-none border-none flex-1 bg-transparent px-3"
                   >
                     <option value="Indonesia">+62</option>
                     <option value="Amerika">+1</option>
@@ -173,6 +188,18 @@ const Profile = () => {
                     id="phone"
                     name="phone"
                     value={profile.phone}
+                    onChange={handleChange}
+                    className="outline-none border-none flex-1 bg-transparent px-3"
+                  />
+                </fieldset>
+
+                <fieldset className="md:hidden w-[264px] h-[55px] rounded-xl  border border-solid border-gray-300 hover:border-[#3ECF4C]">
+                  <legend>Email</legend>
+                  <input
+                    type="text"
+                    id="email"
+                    name="email"
+                    value={profile.email}
                     onChange={handleChange}
                     className="outline-none border-none flex-1 bg-transparent px-3"
                   />

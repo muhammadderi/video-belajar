@@ -42,7 +42,7 @@ const Label = ({ label, id, type, placeholder, value, onChange, name }) => {
             <img
               src={
                 showPassword ? "/eye/icons8-eye-24.png" : "/eye/mdi_eye-off.png"
-              } // Ubah icon sesuai state
+              }
               alt="Toggle password visibility"
               className="w-6 h-6"
             />

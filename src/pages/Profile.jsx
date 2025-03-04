@@ -22,10 +22,16 @@ const Profile = () => {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setProfile((prevProfile) => ({
-        ...prevProfile,
-        image: URL.createObjectURL(file),
-      }));
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const base64Image = reader.result;
+        setProfile((prevProfile) => ({
+          ...prevProfile,
+          image: base64Image,
+        }));
+        localStorage.setItem("profileImage", base64Image);
+      };
     }
   };
 

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "./Button";
+import Profile from "../../pages/Profile";
 
 const NavbarHome = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,6 +9,24 @@ const NavbarHome = () => {
   const desktopMenuRef = useRef(null);
   const navigate = useNavigate();
   const isLogin = localStorage.getItem("userActive") === "true";
+  const [profile, setProfile] = useState("");
+
+  useEffect(() => {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const loginUser = JSON.parse(localStorage.getItem("loginUsers"));
+
+    if (loginUser && loginUser.email) {
+      const savedProfile = users.find(
+        (user) =>
+          user.email.toLowerCase().trim() ===
+          loginUser.email.toLowerCase().trim()
+      );
+
+      if (savedProfile) {
+        setProfile(savedProfile);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -26,7 +45,9 @@ const NavbarHome = () => {
   }, []);
 
   const handleLogout = () => {
-    navigate("/");
+    localStorage.removeItem("loginUsers");
+    localStorage.removeItem("userActive");
+    localStorage.navigate("/");
   };
 
   return (
@@ -35,11 +56,13 @@ const NavbarHome = () => {
         <div>
           <nav className="z-50 bg-white flex justify-between items-center px-6 py-3 border-b border-[#3A35411F] md:px-[120px] w-full">
             <div>
-              <img
-                src="/Logo/Logo.png"
-                alt="video-belajar"
-                className="w-[180px] h-[42px] sm:w-[237px] sm:h-[56px]"
-              />
+              <button onClick={() => navigate("/")}>
+                <img
+                  src="/Logo/Logo.png"
+                  alt="video-belajar"
+                  className="w-[180px] h-[42px] sm:w-[237px] sm:h-[56px]"
+                />
+              </button>
             </div>
 
             <div
@@ -56,14 +79,20 @@ const NavbarHome = () => {
                   onMouseLeave={() => setIsOpen(false)}
                 >
                   <img
-                    src="/src/assets/home/user.png"
+                    src={
+                      profile.image ? profile.image : "/Logo/default-user.png"
+                    }
                     alt="user"
                     className="w-[44px] h-[44px] hidden md:block"
                   />
                 </div>
 
                 {isOpen && (
-                  <ul className="absolute left-0 mt-2 w-40 bg-white border rounded-lg shadow-lg z-50">
+                  <ul
+                    className="absolute left-0 mt-2 w-40 bg-white border rounded-lg shadow-lg z-50"
+                    onMouseEnter={() => setIsOpen(true)}
+                    onMouseLeave={() => setIsOpen(false)}
+                  >
                     <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                       <Link to="/profile">Profil Saya</Link>
                     </li>
@@ -136,11 +165,13 @@ const NavbarHome = () => {
         <div>
           <nav className="flex justify-between items-center px-6 py-3 border-b border-[#3A35411F] md:px-[120px] w-full">
             <div>
-              <img
-                src="/Logo/Logo.png"
-                alt="video-belajar"
-                className="w-[180px] h-[42px] sm:w-[237px] sm:h-[56px]"
-              />
+              <button onClick={() => navigate("/")}>
+                <img
+                  src="/Logo/Logo.png"
+                  alt="video-belajar"
+                  className="w-[180px] h-[42px] sm:w-[237px] sm:h-[56px]"
+                />
+              </button>
             </div>
 
             <div className="hidden sm:flex gap-5 items-center">
@@ -150,7 +181,7 @@ const NavbarHome = () => {
               <Button
                 bgcolor={"bg-[#3ECF4C]"}
                 textButton={"Login"}
-                type={"login"}
+                type={"button"}
                 color={
                   "text-[white] py-[10px] px-[26px] text-[16px] font-bold leading-[22.4px] hover:bg-white hover:text-[#3ECF4C] hover:border-[#3ECF4C] hover:border"
                 }
@@ -158,7 +189,7 @@ const NavbarHome = () => {
               />
               <Button
                 textButton={"Register"}
-                type={"login"}
+                type={"button"}
                 color={
                   "text-[#3ECF4C] border border-[#3ECF4C] py-[10px] px-[26px] text-[16px] font-bold leading-[22.4px] hover:bg-[#3ECF4C] hover:text-white"
                 }
@@ -202,7 +233,7 @@ const NavbarHome = () => {
                     <Button
                       bgcolor={"bg-[#3ECF4C]"}
                       textButton={"Login"}
-                      type={"login"}
+                      type={"button"}
                       color={
                         "text-[white] w-full py-[10px] text-[16px] font-bold leading-[22.4px] hover:bg-white hover:text-[#3ECF4C] hover:border-[#3ECF4C] hover:border"
                       }
@@ -214,7 +245,7 @@ const NavbarHome = () => {
                   >
                     <Button
                       textButton={"Register"}
-                      type={"login"}
+                      type={"button"}
                       color={
                         "text-[#3ECF4C] border border-[#3ECF4C] py-[10px] w-full text-[16px] font-bold leading-[22.4px] hover:bg-[#3ECF4C] hover:text-white"
                       }

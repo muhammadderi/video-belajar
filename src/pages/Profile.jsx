@@ -1,15 +1,47 @@
 import { useEffect, useState } from "react";
 import NavbarHome from "../components/atoms/NavbarHome";
-import Button from "../components/atoms/Button";
 import Footer from "../components/organisms/Footer";
+import Button from "../components/atoms/Button";
 
 const Profile = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [showInput, setShowInput] = useState(false);
+
+  const handleClickImage = () => {
+    setShowInput(true);
+  };
+
+  const handleDeleteImage = () => {
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      image: null,
+    }));
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        image: URL.createObjectURL(file),
+      }));
+    }
+  };
+
+  const togglePassword = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   const [profile, setProfile] = useState({
     fullName: "",
     email: "",
     country: "",
     phone: "",
     sex: "",
+    password: "",
+    confirmPassword: "",
+    image: null,
   });
 
   useEffect(() => {
@@ -20,7 +52,7 @@ const Profile = () => {
     } else if (profile.country === "Amerika") {
       setProfile((prev) => ({ ...prev, country: "+44" }));
     }
-  });
+  }, [profile.country]);
 
   useEffect(() => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -45,7 +77,7 @@ const Profile = () => {
   };
 
   const handleUpdate = () => {
-    const users = JSON.parse(localStorage.getItem("users") || []);
+    const users = JSON.parse(localStorage.getItem("users")) || [];
     const loginUsers = JSON.parse(localStorage.getItem("loginUsers"));
     console.log("users", users);
     console.log("login", loginUsers);
@@ -106,13 +138,22 @@ const Profile = () => {
             </p>
           </div>
         </div>
-        <div className="w-auto md:h-[308px] rounded-xl border p-[24px]">
+        <div className="md:w-[872px] md:h-[308px] rounded-xl border p-[24px]">
           <div className="flex gap-3">
-            <img
-              src="\src\assets\home\user.png"
-              alt="profile-user"
-              className="w-[92px] h-[92px]"
-            />
+            {profile.image ? (
+              <img
+                src={
+                  profile.image ? profile.image : "/src/assets/home/user.png"
+                }
+                alt="profile-user"
+                className="w-[92px] h-[92px]"
+              />
+            ) : (
+              <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center">
+                <span className="text-gray-600">Profile</span>
+              </div>
+            )}
+
             <div>
               <h5 className="capitalize font-poppins font-semibold text-[20px] leading-[24px]">
                 {profile.fullName}
@@ -121,9 +162,20 @@ const Profile = () => {
                 {profile.email}
               </p>
               <p className="font-bold text-[16px] leading-[22.4px] text-[#F64920]">
-                Ganti Foto Profil
+                <button onClick={handleClickImage}>Ganti Foto Profil</button>
+                <br />
+                <button onClick={handleDeleteImage}>Delete Foto Profil</button>
               </p>
             </div>
+
+            {showInput && (
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="border p-2 rounded-md w-26 h-12 "
+              />
+            )}
           </div>
           <br />
           <hr className="border rounded-xl " />
@@ -131,8 +183,8 @@ const Profile = () => {
           <div>
             <form onSubmit={handleUpdate}>
               <div className="md:flex gap-2">
-                <fieldset className="w-[320px] h-[55px] rounded-xl  border border-solid border-gray-300 hover:border-[#3ECF4C]">
-                  <legend>Nama Lengkap</legend>
+                <fieldset className="px-3 md:w-[320px] w-[272px] h-[55px] rounded-xl  border border-solid border-gray-300 hover:border-[#3ECF4C]">
+                  <legend className="px-2 text-gray-600">Nama Lengkap</legend>
                   <input
                     type="text"
                     id="fullName"
@@ -142,8 +194,8 @@ const Profile = () => {
                     className="outline-none border-none flex-1 bg-transparent px-3"
                   />
                 </fieldset>
-                <fieldset className="w-[264px] h-[55px] rounded-xl  border border-solid border-gray-300 hover:border-[#3ECF4C]">
-                  <legend>Email</legend>
+                <fieldset className="px-3 w-[272px] md:w-[264px] h-[55px] rounded-xl  border border-solid border-gray-300 hover:border-[#3ECF4C]">
+                  <legend className="px-2 text-gray-600">Email</legend>
                   <input
                     type="text"
                     id="email"
@@ -153,8 +205,8 @@ const Profile = () => {
                     className="outline-none border-none flex-1 bg-transparent px-3"
                   />
                 </fieldset>
-                <fieldset className="md:hidden w-[90px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
-                  <legend>Jenis Kelamin</legend>
+                <fieldset className="px-3 md:hidden w-[90px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
+                  <legend className="px-2 text-gray-600">Jenis Kelamin</legend>
                   <select
                     name="sex"
                     id="sex"
@@ -167,8 +219,8 @@ const Profile = () => {
                   </select>
                 </fieldset>
 
-                <fieldset className="w-[90px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
-                  <legend>Kode</legend>
+                <fieldset className="px-3 w-[90px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
+                  <legend className="px-2 text-gray-600">Kode</legend>
                   <select
                     name="country"
                     id="country"
@@ -176,13 +228,13 @@ const Profile = () => {
                     onChange={handleChange}
                     className=" outline-none border-none flex-1 bg-transparent px-3"
                   >
-                    <option value="Indonesia">+62</option>
-                    <option value="Amerika">+1</option>
-                    <option value="Inggris">+44</option>
+                    <option value="+62">+62</option>
+                    <option value="+1">+1</option>
+                    <option value="+44">+44</option>
                   </select>
                 </fieldset>
-                <fieldset className="w-[158px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
-                  <legend>No HP</legend>
+                <fieldset className="px-3 w-[158px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
+                  <legend className="px-2 text-gray-600">No HP</legend>
                   <input
                     type="text"
                     id="phone"
@@ -193,29 +245,70 @@ const Profile = () => {
                   />
                 </fieldset>
 
-                <fieldset className="md:hidden w-[264px] h-[55px] rounded-xl  border border-solid border-gray-300 hover:border-[#3ECF4C]">
-                  <legend>Email</legend>
+                <fieldset className="relative flex items-center md:hidden md:w-[264px] w-[272px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C] px-3">
+                  <legend className="px-2 text-gray-600">Password</legend>
                   <input
-                    type="text"
-                    id="email"
-                    name="email"
-                    value={profile.email}
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    name="password"
+                    value={profile.password}
                     onChange={handleChange}
-                    className="outline-none border-none flex-1 bg-transparent px-3"
+                    className="outline-none border-none flex-1 bg-transparent h-full py-1 pr-10 text-base"
                   />
+                  <button
+                    type="button"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center"
+                    onClick={togglePassword}
+                  >
+                    <img
+                      src={
+                        showPassword
+                          ? "/eye/icons8-eye-24.png"
+                          : "/eye/mdi_eye-off.png"
+                      }
+                      alt="Toggle password visibility"
+                      className="w-6 h-6"
+                    />
+                  </button>
+                </fieldset>
+                <fieldset className="relative flex items-center md:hidden md:w-[264px] w-[272px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C] px-3">
+                  <legend className="px-2 text-gray-600">
+                    Konfirmasi Password
+                  </legend>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    value={profile.confirmPassword}
+                    onChange={handleChange}
+                    className="outline-none border-none flex-1 bg-transparent h-full py-1 pr-10 text-base"
+                  />
+                  <button
+                    type="button"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center"
+                    onClick={togglePassword}
+                  >
+                    <img
+                      src={
+                        showPassword
+                          ? "/eye/icons8-eye-24.png"
+                          : "/eye/mdi_eye-off.png"
+                      }
+                      alt="Toggle password visibility"
+                      className="w-6 h-6"
+                    />
+                  </button>
                 </fieldset>
               </div>
               <br />
-              <div className="flex justify-end">
-                <Button
-                  bgcolor={"bg-[#3ECF4C]"}
-                  textButton={"Simpan"}
-                  type={"submit"}
-                  color={
-                    "text-[white] py-[10px] px-[26px] text-[16px] font-bold leading-[22.4px] hover:bg-white hover:text-[#3ECF4C] hover:border-[#3ECF4C] hover:border"
-                  }
-                />
-              </div>
+              <Button
+                bgcolor={"bg-[#3ECF4C]"}
+                textButton={"Simpan"}
+                type={"submit"}
+                color={
+                  "text-[white] py-[10px] px-[26px] text-[16px] font-bold leading-[22.4px] hover:bg-white hover:text-[#3ECF4C] hover:border-[#3ECF4C] hover:border"
+                }
+              />
             </form>
           </div>
         </div>

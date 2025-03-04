@@ -65,7 +65,7 @@ const NavbarHome = () => {
                 {isOpen && (
                   <ul className="absolute left-0 mt-2 w-40 bg-white border rounded-lg shadow-lg z-50">
                     <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                      Profil Saya
+                      <Link to="/profile">Profil Saya</Link>
                     </li>
                     <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                       Kelas Saya
@@ -106,7 +106,7 @@ const NavbarHome = () => {
                   onMouseLeave={() => setIsOpen(false)}
                 >
                   <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-[#FF5C2B]">
-                    Profil Saya
+                    <Link to="/profile">Profil Saya</Link>
                   </li>
                   <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-[#FF5C2B]">
                     Kelas Saya

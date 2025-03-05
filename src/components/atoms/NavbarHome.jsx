@@ -102,8 +102,11 @@ const NavbarHome = () => {
                     <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                       Pesanan Saya
                     </li>
-                    <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                      <button onClick={() => handleLogout()}>Keluar</button>
+                    <li
+                      onClick={() => handleLogout()}
+                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    >
+                      <button>Keluar</button>
                     </li>
                   </ul>
                 )}
@@ -143,11 +146,11 @@ const NavbarHome = () => {
                   <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-[#FF5C2B]">
                     Pesanan Saya
                   </li>
-                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-[#FF5C2B]">
-                    <button
-                      onClick={() => handleLogout()}
-                      className="flex gap-1"
-                    >
+                  <li
+                    onClick={() => handleLogout()}
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-[#FF5C2B]"
+                  >
+                    <button className="flex gap-1">
                       Keluar{" "}
                       <img
                         src="/Logo/logout.png"

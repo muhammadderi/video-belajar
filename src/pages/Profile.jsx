@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import NavbarHome from "../components/atoms/NavbarHome";
 import Footer from "../components/organisms/Footer";
 import Button from "../components/atoms/Button";
+import InputFieldset from "../components/molecules/InputFieldset";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const Profile = () => {
   const [showPassword, setShowPassword] = useState(false);
-
   const [showInput, setShowInput] = useState(false);
+  const navigate = useNavigate();
 
   const handleClickImage = () => {
     setShowInput(true);
@@ -89,7 +92,9 @@ const Profile = () => {
     console.log("login", loginUsers);
 
     if (!loginUsers || !loginUsers.email) {
-      alert("Tidak ada pengguna yang sedang login");
+      toast.error("Tidak ada pengguna yang sedang login", {
+        position: "top-center",
+      });
       return;
     }
 
@@ -98,11 +103,13 @@ const Profile = () => {
     );
 
     localStorage.setItem("users", JSON.stringify(updatedUsers));
-    alert("Profil berhasil di perbaharui");
+    toast.success("Profil berhasil di perbaharui");
+    navigate("/profile");
   };
 
   return (
     <div>
+      <ToastContainer />
       <NavbarHome />
       <section className="md:px-[120px] md:py-[64px] md:grid md:grid-cols-[30%_60%] w-full px-[20px] py-[28px]">
         <div className="w-[292px] h-[291px]">
@@ -189,29 +196,21 @@ const Profile = () => {
           <div>
             <form onSubmit={handleUpdate}>
               <div className="md:flex gap-2">
-                <fieldset className="px-3 md:w-[320px] w-[272px] h-[55px] rounded-xl  border border-solid border-gray-300 hover:border-[#3ECF4C]">
-                  <legend className="px-2 text-gray-600">Nama Lengkap</legend>
-                  <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    value={profile.fullName}
-                    onChange={handleChange}
-                    className="outline-none border-none flex-1 bg-transparent px-3"
-                  />
-                </fieldset>
-                <fieldset className="px-3 w-[272px] md:w-[264px] h-[55px] rounded-xl  border border-solid border-gray-300 hover:border-[#3ECF4C]">
-                  <legend className="px-2 text-gray-600">Email</legend>
-                  <input
-                    type="text"
-                    id="email"
-                    name="email"
-                    value={profile.email}
-                    onChange={handleChange}
-                    className="outline-none border-none flex-1 bg-transparent px-3"
-                  />
-                </fieldset>
-                <fieldset className="px-3 md:hidden w-[90px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
+                <InputFieldset
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  value={profile.fullName}
+                  onChange={handleChange}
+                />
+                <InputFieldset
+                  type="text"
+                  id="email"
+                  name="email"
+                  value={profile.email}
+                  onChange={handleChange}
+                />
+                <fieldset className="px-3 md:hidden w-[324px] md:w-[90px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
                   <legend className="px-2 text-gray-600">Jenis Kelamin</legend>
                   <select
                     name="sex"
@@ -224,34 +223,34 @@ const Profile = () => {
                     <option value="woman">Perempuan</option>
                   </select>
                 </fieldset>
-
-                <fieldset className="px-3 w-[90px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
-                  <legend className="px-2 text-gray-600">Kode</legend>
-                  <select
-                    name="country"
-                    id="country"
-                    value={profile.country}
-                    onChange={handleChange}
-                    className=" outline-none border-none flex-1 bg-transparent px-3"
-                  >
-                    <option value="+62">+62</option>
-                    <option value="+1">+1</option>
-                    <option value="+44">+44</option>
-                  </select>
-                </fieldset>
-                <fieldset className="px-3 w-[158px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
-                  <legend className="px-2 text-gray-600">No HP</legend>
-                  <input
-                    type="text"
-                    id="phone"
-                    name="phone"
-                    value={profile.phone}
-                    onChange={handleChange}
-                    className="outline-none border-none flex-1 bg-transparent px-3"
-                  />
-                </fieldset>
-
-                <fieldset className="relative flex items-center md:hidden md:w-[264px] w-[272px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C] px-3">
+                <div className="flex gap-2">
+                  <fieldset className="px-3 md:w-[90px] w-[50px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
+                    <legend className="px-2 text-gray-600">Kode</legend>
+                    <select
+                      name="country"
+                      id="country"
+                      value={profile.country}
+                      onChange={handleChange}
+                      className=" outline-none border-none flex-1 bg-transparent px-3"
+                    >
+                      <option value="+62">+62</option>
+                      <option value="+1">+1</option>
+                      <option value="+44">+44</option>
+                    </select>
+                  </fieldset>
+                  <fieldset className="md:w-[158px] w-[220px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
+                    <legend className="px-2 text-gray-600">No HP</legend>
+                    <input
+                      type="text"
+                      id="phone"
+                      name="phone"
+                      value={profile.phone}
+                      onChange={handleChange}
+                      className="outline-none border-none flex-1 bg-transparent px-3"
+                    />
+                  </fieldset>
+                </div>
+                <fieldset className="relative flex items-center md:hidden md:w-[264px] w-[324px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C] px-3">
                   <legend className="px-2 text-gray-600">Password</legend>
                   <input
                     type={showPassword ? "text" : "password"}
@@ -277,7 +276,7 @@ const Profile = () => {
                     />
                   </button>
                 </fieldset>
-                <fieldset className="relative flex items-center md:hidden md:w-[264px] w-[272px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C] px-3">
+                <fieldset className="relative flex items-center md:hidden md:w-[264px] w-[324px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C] px-3">
                   <legend className="px-2 text-gray-600">
                     Konfirmasi Password
                   </legend>
@@ -314,7 +313,23 @@ const Profile = () => {
                 color={
                   "text-[white] py-[10px] px-[26px] text-[16px] font-bold leading-[22.4px] hover:bg-white hover:text-[#3ECF4C] hover:border-[#3ECF4C] hover:border"
                 }
-              />
+              >
+                <button
+                  type="button"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center"
+                  onClick={togglePassword}
+                >
+                  <img
+                    src={
+                      showPassword
+                        ? "/eye/icons8-eye-24.png"
+                        : "/eye/mdi_eye-off.png"
+                    }
+                    alt="Toggle password visibility"
+                    className="w-6 h-6"
+                  />
+                </button>
+              </Button>
             </form>
           </div>
         </div>

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AuthLayout from "../components/templates/AuthLayout";
 import Label from "../components/molecules/InputField";
 import Button from "../components/atoms/Button";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 function Register() {
   const navigate = useNavigate();
@@ -50,17 +51,24 @@ function Register() {
     const emailExist = users.some((users) => users.email === formData.email);
 
     if (!validateNumber[formData.country]?.test(formData.phone)) {
-      alert("Nomer telpon tidak valid!!");
+      toast.warn("Nomer telpon tidak valid!!", {
+        position: "top-center",
+      });
     } else if (formData.password !== formData.confirmPassword) {
-      alert("Kata sandi dan konfirmasi kata sandi tidak sesuai");
+      toast.warn("Kata sandi dan konfirmasi kata sandi tidak sesuai", {
+        position: "top-center",
+      });
     } else if (
       getPasswordStrength(formData.password) !== "Kata sandi kuat ✅"
     ) {
-      alert("Tolong gunakan kompleksitas password dengan kombinasi dan angka");
+      toast.warn(
+        "Tolong gunakan kompleksitas password dengan kombinasi dan angka",
+        { position: "top-center" }
+      );
     } else if (emailExist) {
-      alert("Email sudah pernah digunakan!");
+      toast.error("Email sudah pernah digunakan!", { position: "top-center" });
     } else {
-      alert("Pendaftaran berhasil ");
+      toast.success("Pendaftaran berhasil", { position: "top-center" });
 
       users.push(formData);
       localStorage.setItem("users", JSON.stringify(users));
@@ -80,6 +88,7 @@ function Register() {
 
   return (
     <div>
+      <ToastContainer />
       <AuthLayout
         title="Pendaftaran Akun"
         subtitle="Yuk, daftarkan akunmu sekarang juga!"
@@ -180,7 +189,7 @@ function Register() {
           size="md:w-[518px] md:h-[42px] w-[280px] h-[34px]"
           type="submit"
         />
-        <Link to="/">
+        <Link to="/login">
           <Button
             textButton="Masuk"
             color="text-[#3ECF4C] text-[14px] md:text-[16px]"
@@ -194,6 +203,7 @@ function Register() {
           <span className="text-[#4A505C] text-base">atau</span>
           <div className="h-px w-full bg-[#4A505C]"></div>
         </div>
+
         <Button
           img="/Logo/google-icon.png"
           imgStyle="w-[20px] h-[20px]"

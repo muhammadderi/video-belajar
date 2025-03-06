@@ -6,10 +6,13 @@ import Home from "./pages/Home";
 import AllProduct from "./pages/AllProduct";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <Router>
+    <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

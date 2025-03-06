@@ -4,7 +4,7 @@ import Footer from "../components/organisms/Footer";
 import Button from "../components/atoms/Button";
 import InputFieldset from "../components/molecules/InputFieldset";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -109,7 +109,6 @@ const Profile = () => {
 
   return (
     <div>
-      <ToastContainer />
       <NavbarHome />
       <section className="md:px-[120px] md:py-[64px] md:grid md:grid-cols-[30%_60%] w-full px-[20px] py-[28px]">
         <div className="w-[292px] h-[291px]">

@@ -3,7 +3,7 @@ import AuthLayout from "../components/templates/AuthLayout";
 import Label from "../components/molecules/InputField";
 import Button from "../components/atoms/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import {toast } from "react-toastify";
 
 function Register() {
   const navigate = useNavigate();
@@ -88,7 +88,6 @@ function Register() {
 
   return (
     <div>
-      <ToastContainer />
       <AuthLayout
         title="Pendaftaran Akun"
         subtitle="Yuk, daftarkan akunmu sekarang juga!"

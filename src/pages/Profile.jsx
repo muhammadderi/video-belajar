@@ -104,7 +104,10 @@ const Profile = () => {
 
     localStorage.setItem("users", JSON.stringify(updatedUsers));
     toast.success("Profil berhasil di perbaharui");
-    navigate("/profile");
+   
+    setTimeout(() => {
+      navigate("/profile")
+    }, 2000);
   };
 
   return (

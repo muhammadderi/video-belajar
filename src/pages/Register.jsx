@@ -82,7 +82,7 @@ function Register() {
         country: "",
       });
 
-      navigate("/");
+      navigate("/login");
     }
   };
 

@@ -85,7 +85,8 @@ const Profile = () => {
     setProfile({ ...profile, [name]: value });
   };
 
-  const handleUpdate = () => {
+  const handleUpdate = (e) => {
+    e.preventDefault()
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const loginUsers = JSON.parse(localStorage.getItem("loginUsers"));
     console.log("users", users);
@@ -104,10 +105,6 @@ const Profile = () => {
 
     localStorage.setItem("users", JSON.stringify(updatedUsers));
     toast.success("Profil berhasil di perbaharui");
-   
-    setTimeout(() => {
-      navigate("/profile")
-    }, 2000);
   };
 
   return (
@@ -213,7 +210,7 @@ const Profile = () => {
                   value={profile.email}
                   onChange={handleChange}
                 />
-                <fieldset className="px-3 md:hidden w-[324px] md:w-[90px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
+                <fieldset className="px-3 md:hidden w-full md:w-[90px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
                   <legend className="px-2 text-gray-600">Jenis Kelamin</legend>
                   <select
                     name="sex"
@@ -241,7 +238,7 @@ const Profile = () => {
                       <option value="+44">+44</option>
                     </select>
                   </fieldset>
-                  <fieldset className="md:w-[158px] w-[220px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
+                  <fieldset className="md:w-[158px] w-full h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C]">
                     <legend className="px-2 text-gray-600">No HP</legend>
                     <input
                       type="text"
@@ -253,7 +250,7 @@ const Profile = () => {
                     />
                   </fieldset>
                 </div>
-                <fieldset className="relative flex items-center md:hidden md:w-[264px] w-[324px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C] px-3">
+                <fieldset className="relative flex items-center md:hidden md:w-[264px] w-full h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C] px-3">
                   <legend className="px-2 text-gray-600">Password</legend>
                   <input
                     type={showPassword ? "text" : "password"}
@@ -279,7 +276,7 @@ const Profile = () => {
                     />
                   </button>
                 </fieldset>
-                <fieldset className="relative flex items-center md:hidden md:w-[264px] w-[324px] h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C] px-3">
+                <fieldset className="relative flex items-center md:hidden md:w-[264px] w-full h-[55px] rounded-xl border border-solid border-gray-300 hover:border-[#3ECF4C] px-3">
                   <legend className="px-2 text-gray-600">
                     Konfirmasi Password
                   </legend>

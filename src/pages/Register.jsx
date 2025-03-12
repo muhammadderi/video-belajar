@@ -3,7 +3,8 @@ import AuthLayout from "../components/templates/AuthLayout";
 import Label from "../components/molecules/InputField";
 import Button from "../components/atoms/Button";
 import { Link, useNavigate } from "react-router-dom";
-import {toast } from "react-toastify";
+import { toast } from "react-toastify";
+import { createUser } from "../services/usersApi.js";
 
 function Register() {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ function Register() {
     return "Kata sandi kuat ✅";
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -68,10 +69,12 @@ function Register() {
     } else if (emailExist) {
       toast.error("Email sudah pernah digunakan!", { position: "top-center" });
     } else {
-      toast.success("Pendaftaran berhasil", { position: "top-center" });
-
-      users.push(formData);
-      localStorage.setItem("users", JSON.stringify(users));
+      try {
+        const newUser = await createUser(formData);
+        toast.success("Pendaftaran berhasil", { position: "top-center" });
+      } catch (error) {
+        toast.error("Error posting user data:", error);
+      }
 
       setFormData({
         fullName: "",

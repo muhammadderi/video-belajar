@@ -9,12 +9,16 @@ const Card = ({
   altMain,
   mainTitle,
   mainSubTitle,
+  position,
+  price,
 }) => {
+
+  
   return (
     <div className="md:w-[360px] w-full  rounded-[10px] border p-5 mb-3">
       <div className="flex flex-col md:flex-col gap-1">
         <img
-          src={img}
+          src={`${img}.jpg`}
           alt={alt}
           className="w-full h-[147px] md:h-[200px] object-cover rounded-lg"
         />
@@ -31,7 +35,7 @@ const Card = ({
           <div className="flex items-center gap-3">
             <img
               className="w-[36px] h-[36px] md:w-[40px] md:h-[40px] object-cover rounded-full"
-              src={imgMain}
+              src={`${imgMain}.jpg`}
               alt={altMain}
             />
 
@@ -43,13 +47,13 @@ const Card = ({
                 {mainSubTitle} <b>Gojek</b>
               </span>
               <span className="md:hidden font-dm-sans text-[12px] text-gray-500">
-                Senior Accountant
+                {position}
               </span>
             </div>
           </div>
         </div>
       </div>
-      <StarRating />
+      <StarRating price={price} />
     </div>
   );
 };

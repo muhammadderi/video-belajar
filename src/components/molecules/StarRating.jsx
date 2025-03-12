@@ -1,4 +1,4 @@
-const StarRating = () => {
+const StarRating = ({price}) => {
   return (
     <div className="flex justify-between justify-items-center items-center">
       <span className="flex">
@@ -32,7 +32,7 @@ const StarRating = () => {
         </span>
       </span>
       <h4 className="font-poppins font-semibold md:text-[24px] md:leading-[28.8px] text-[20px] leading-[24px] text-[#3ECF4C]">
-        Rp 300K
+        Rp {Math.round(price)}K
       </h4>
     </div>
   );

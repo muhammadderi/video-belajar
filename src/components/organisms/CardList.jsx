@@ -9,17 +9,15 @@ const CardList = () => {
     const fetchEducationVideos = async () => {
       try {
         const data = await getEducationVideos();
-        console.log('fetchEducationVideos :', data);
+
         setData(data);
       } catch (error) {
-        console.log('Error fething videos :', error);
+        console.log("Error fething videos :", error);
       }
     };
 
     fetchEducationVideos();
-  },[])
- 
-
+  }, []);
 
   return (
     <div className="md:grid md:grid-flow-row md:grid-cols-3 md:gap-1">

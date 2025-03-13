@@ -4,10 +4,11 @@ import Label from "../components/molecules/InputField";
 import Button from "../components/atoms/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { createUser } from "../services/usersApi.js";
+import { createUser, getUser } from "../services/usersApi.js";
 
 function Register() {
   const navigate = useNavigate();
+  const [user, setUser] = useState([]);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -23,6 +24,7 @@ function Register() {
     Inggris: /^[0-9]{10,11}$/,
   };
 
+  console.log(user);
   const flags = {
     Indonesia: "https://flagcdn.com/w40/id.png",
     Amerika: "https://flagcdn.com/w40/us.png",
@@ -45,11 +47,24 @@ function Register() {
     return "Kata sandi kuat ✅";
   };
 
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const data = await getUser();
+        setUser(data);
+      } catch (error) {
+        console.log("Error fetching data :", error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const emailExist = users.some((users) => users.email === formData.email);
+    // const users = JSON.parse(localStorage.getItem("users")) || [];
+    const emailExist = user.some((users) => users.email === formData.email);
 
     if (!validateNumber[formData.country]?.test(formData.phone)) {
       toast.warn("Nomer telpon tidak valid!!", {
@@ -70,22 +85,21 @@ function Register() {
       toast.error("Email sudah pernah digunakan!", { position: "top-center" });
     } else {
       try {
-        const newUser = await createUser(formData);
+        await createUser(formData);
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          password: "",
+          confirmPassword: "",
+          country: "",
+        });
+
         toast.success("Pendaftaran berhasil", { position: "top-center" });
+        navigate("/login");
       } catch (error) {
         toast.error("Error posting user data:", error);
       }
-
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        password: "",
-        confirmPassword: "",
-        country: "",
-      });
-
-      navigate("/login");
     }
   };
 

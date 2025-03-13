@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AuthLayout from "../components/templates/AuthLayout";
 import Label from "../components/molecules/InputField";
 import Button from "../components/atoms/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { getUser } from "../services/usersApi";
 
 function Login() {
-  const users = JSON.parse(localStorage.getItem("users")) || [];
+  // const users = JSON.parse(localStorage.getItem("users")) || [];
   const navigate = useNavigate();
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const user = await getUser();
+        setUsers(user);
+      } catch (error) {
+        console.log("Error fetching users");
+        throw error;
+      }
+    };
+    fetchUser();
+  }, []);
 
   const [formLogin, setFormLogin] = useState({
     email: "",
@@ -37,9 +52,10 @@ function Login() {
       });
 
       navigate("/");
-    } else toast.warn("Email atau password tidak sesuai", {
-      position: "top-center"
-    });
+    } else
+      toast.warn("Email atau password tidak sesuai", {
+        position: "top-center",
+      });
   };
 
   return (

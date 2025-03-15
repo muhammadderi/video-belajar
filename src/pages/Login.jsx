@@ -5,11 +5,13 @@ import Button from "../components/atoms/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getUser } from "../services/usersApi";
+import useUserStore from "../zustand/user";
 
 function Login() {
   // const users = JSON.parse(localStorage.getItem("users")) || [];
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const { setUserLogin } = useUserStore();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -39,12 +41,15 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (
-      users.some((user) => user.email === formLogin.email) &&
-      users.some((user) => user.password === formLogin.password)
-    ) {
-      localStorage.setItem("loginUsers", JSON.stringify(formLogin));
+    const userData = users.find(
+      (user) =>
+        user.email === formLogin.email && user.password === formLogin.password
+    );
+
+    if (userData) {
+      localStorage.setItem("loginUsers", JSON.stringify(userData));
       localStorage.setItem("userActive", "true");
+      setUserLogin(userData);
 
       setFormLogin({
         email: "",

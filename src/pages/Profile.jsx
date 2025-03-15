@@ -3,13 +3,19 @@ import NavbarHome from "../components/atoms/NavbarHome";
 import Footer from "../components/organisms/Footer";
 import Button from "../components/atoms/Button";
 import InputFieldset from "../components/molecules/InputFieldset";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import useUserStore from "../zustand/user";
+import { updateUser } from "../services/usersApi";
 
 const Profile = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showInput, setShowInput] = useState(false);
-  const navigate = useNavigate();
+  const { userLogin, setUserLogin } = useUserStore();
+  const [profile, setProfile] = useState([]);
+
+  useEffect(() => {
+    setProfile(userLogin);
+  }, [userLogin]);
 
   const handleClickImage = () => {
     setShowInput(true);
@@ -42,17 +48,6 @@ const Profile = () => {
     setShowPassword((prev) => !prev);
   };
 
-  const [profile, setProfile] = useState({
-    fullName: "",
-    email: "",
-    country: "",
-    phone: "",
-    sex: "",
-    password: "",
-    confirmPassword: "",
-    image: null,
-  });
-
   useEffect(() => {
     if (profile.country === "Indonesia") {
       setProfile((prev) => ({ ...prev, country: "+62" }));
@@ -63,48 +58,33 @@ const Profile = () => {
     }
   }, [profile.country]);
 
-  useEffect(() => {
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const loginUser = JSON.parse(localStorage.getItem("loginUsers"));
-
-    if (loginUser && loginUser.email) {
-      const savedProfile = users.find(
-        (user) =>
-          user.email.toLowerCase().trim() ===
-          loginUser.email.toLowerCase().trim()
-      );
-
-      if (savedProfile) {
-        setProfile(savedProfile);
-      }
-    }
-  }, []);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProfile({ ...profile, [name]: value });
   };
 
-  const handleUpdate = (e) => {
-    e.preventDefault()
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const loginUsers = JSON.parse(localStorage.getItem("loginUsers"));
-    console.log("users", users);
-    console.log("login", loginUsers);
+  const handleUpdate = async (e) => {
+    e.preventDefault();
 
-    if (!loginUsers || !loginUsers.email) {
-      toast.error("Tidak ada pengguna yang sedang login", {
-        position: "top-center",
-      });
+    if (!profile.fullName || !profile.email) {
+      toast.error("Nama dan email tidak boleh kosong!");
       return;
     }
 
-    const updatedUsers = users.map((user) =>
-      user.email === loginUsers.email ? profile : user
-    );
+    try {
+      const updatedUser = {
+        ...profile,
+      };
 
-    localStorage.setItem("users", JSON.stringify(updatedUsers));
-    toast.success("Profil berhasil di perbaharui");
+      const updatedResponse = await updateUser(userLogin.id, updatedUser);
+      setUserLogin(updatedResponse);
+      setProfile(updatedResponse);
+      console.log(updatedResponse);
+      toast.success("Profil berhasil diperbarui!");
+    } catch (error) {
+      console.error("Gagal update user profile", error);
+      toast.error("Gagal memperbarui profil.");
+    }
   };
 
   return (

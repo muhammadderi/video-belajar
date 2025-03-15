@@ -26,4 +26,23 @@ export const getUser = async () => {
   }
 };
 
+//update user
+export const updateUser = async (userId, updatedData) => {
+  try {
+    console.log("Updating user with ID:", userId);
+    console.log("Updated Data:", updatedData);
+
+    const response = await usersApi.put(`/users/${userId}`, updatedData);
+
+    console.log("Response from API:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error updating user:",
+      error.response?.data || error.message
+    );
+    throw error;
+  }
+};
+
 export default usersApi;

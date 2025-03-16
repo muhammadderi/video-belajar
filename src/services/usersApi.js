@@ -1,7 +1,13 @@
 import axios from "axios";
 
+// const usersApi = axios.create({
+//   baseURL: "https://67d043f7825945773eb0399c.mockapi.io/video/v1",
+// });
+
+const API_URL = import.meta.env.VITE_USERS_URL;
+
 const usersApi = axios.create({
-  baseURL: "https://67d043f7825945773eb0399c.mockapi.io/video/v1",
+  baseURL: API_URL,
 });
 
 // create user
@@ -29,18 +35,24 @@ export const getUser = async () => {
 //update user
 export const updateUser = async (userId, updatedData) => {
   try {
-    console.log("Updating user with ID:", userId);
-    console.log("Updated Data:", updatedData);
-
     const response = await usersApi.put(`/users/${userId}`, updatedData);
-
-    console.log("Response from API:", response.data);
     return response.data;
   } catch (error) {
     console.error(
       "Error updating user:",
       error.response?.data || error.message
     );
+    throw error;
+  }
+};
+
+// delete user
+export const deleteUser = async (userId) => {
+  try {
+    const response = await usersApi.delete(`/users/${userId}`);
+    return response.data;
+  } catch (error) {
+    "Error deleted user:", error.response?.data || error.message;
     throw error;
   }
 };

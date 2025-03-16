@@ -2,14 +2,16 @@ import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import Profile from "../../pages/Profile";
+import useUserStore from "../../zustand/user";
 
 const NavbarHome = () => {
   const [isOpen, setIsOpen] = useState(false);
   const mobileMenuRef = useRef(null);
   const desktopMenuRef = useRef(null);
   const navigate = useNavigate();
-  const isLogin = localStorage.getItem("userActive") === "true";
+  // const isLogin = localStorage.getItem("userActive") === "true";
   const [profile, setProfile] = useState("");
+  const { userLogin, setUserLogin } = useUserStore();
 
   useEffect(() => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -45,14 +47,15 @@ const NavbarHome = () => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("loginUsers");
-    localStorage.removeItem("userActive");
+    // localStorage.removeItem("loginUsers");
+    // localStorage.removeItem("userActive");
+    setUserLogin([]);
     navigate("/");
   };
 
   return (
     <>
-      {isLogin ? (
+      {Object.keys(userLogin).length > 0 ? (
         <div>
           <nav className="z-50 bg-white flex justify-between items-center px-6 py-3 border-b border-[#3A35411F] md:px-[120px] w-full">
             <div>

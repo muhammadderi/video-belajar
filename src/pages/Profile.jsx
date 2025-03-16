@@ -5,13 +5,16 @@ import Button from "../components/atoms/Button";
 import InputFieldset from "../components/molecules/InputFieldset";
 import { toast } from "react-toastify";
 import useUserStore from "../zustand/user";
-import { updateUser } from "../services/usersApi";
+import { deleteUser, updateUser } from "../services/usersApi";
+import { useNavigate } from "react-router-dom";
+import { Modal } from "antd";
 
 const Profile = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showInput, setShowInput] = useState(false);
   const { userLogin, setUserLogin } = useUserStore();
   const [profile, setProfile] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setProfile(userLogin);
@@ -20,6 +23,14 @@ const Profile = () => {
   const handleClickImage = () => {
     setShowInput(true);
   };
+
+  useEffect(() => {
+    if (userLogin.length === 0) {
+      toast.error("Session Habis, silahkan login kembali");
+      navigate("/login");
+    } else {
+    }
+  }, []);
 
   const handleDeleteImage = () => {
     setProfile((prevProfile) => ({
@@ -85,6 +96,27 @@ const Profile = () => {
       console.error("Gagal update user profile", error);
       toast.error("Gagal memperbarui profil.");
     }
+  };
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    Modal.confirm({
+      title: "Confirm Delete",
+      content: "Apakah kamu serius mau delete account?",
+      okText: "Iya",
+      cancelText: "Tidak",
+      onOk: async () => {
+        try {
+          const deletedUser = await deleteUser(userLogin.id);
+          console.log(deletedUser);
+          toast.success("user berhasil di hapus");
+          setUserLogin(deleteUser);
+          setProfile(deleteUser);
+        } catch (error) {
+          console.log("Error deleteing data :", error);
+        }
+      },
+    });
   };
 
   return (
@@ -285,30 +317,57 @@ const Profile = () => {
                 </fieldset>
               </div>
               <br />
-              <Button
-                bgcolor={"bg-[#3ECF4C]"}
-                textButton={"Simpan"}
-                type={"submit"}
-                color={
-                  "text-[white] py-[10px] px-[26px] text-[16px] font-bold leading-[22.4px] hover:bg-white hover:text-[#3ECF4C] hover:border-[#3ECF4C] hover:border"
-                }
-              >
-                <button
-                  type="button"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center"
-                  onClick={togglePassword}
+              <div className="flex gap-2">
+                <Button
+                  bgcolor={"bg-[#3ECF4C]"}
+                  textButton={"Simpan"}
+                  type={"submit"}
+                  color={
+                    "text-[white] py-[10px] px-[26px] text-[16px] font-bold leading-[22.4px] hover:bg-white hover:text-[#3ECF4C] hover:border-[#3ECF4C] hover:border"
+                  }
                 >
-                  <img
-                    src={
-                      showPassword
-                        ? "/eye/icons8-eye-24.png"
-                        : "/eye/mdi_eye-off.png"
-                    }
-                    alt="Toggle password visibility"
-                    className="w-6 h-6"
-                  />
-                </button>
-              </Button>
+                  <button
+                    type="button"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center"
+                    onClick={togglePassword}
+                  >
+                    <img
+                      src={
+                        showPassword
+                          ? "/eye/icons8-eye-24.png"
+                          : "/eye/mdi_eye-off.png"
+                      }
+                      alt="Toggle password visibility"
+                      className="w-6 h-6"
+                    />
+                  </button>
+                </Button>
+                <Button
+                  bgcolor={"bg-red-500"}
+                  textButton={"Delete Account"}
+                  onClick={handleDelete}
+                  type={"submit"}
+                  color={
+                    "text-[white] py-[10px] px-[26px] text-[16px] font-bold leading-[22.4px] hover:bg-white hover:text-red-500 hover:border-red-500 hover:border"
+                  }
+                >
+                  <button
+                    type="button"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center"
+                    onClick={togglePassword}
+                  >
+                    <img
+                      src={
+                        showPassword
+                          ? "/eye/icons8-eye-24.png"
+                          : "/eye/mdi_eye-off.png"
+                      }
+                      alt="Toggle password visibility"
+                      className="w-6 h-6"
+                    />
+                  </button>
+                </Button>
+              </div>
             </form>
           </div>
         </div>

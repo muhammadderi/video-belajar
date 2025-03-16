@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_USERS_URL;
+
 const api = axios.create({
-  baseURL: "https://67d043f7825945773eb0399c.mockapi.io/video/v1",
+  baseURL: API_URL,
 });
 
 export const getEducationVideos = async () => {

@@ -112,6 +112,7 @@ const Profile = () => {
           toast.success("user berhasil di hapus");
           setUserLogin(deleteUser);
           setProfile(deleteUser);
+          navigate("/");
         } catch (error) {
           console.log("Error deleteing data :", error);
         }

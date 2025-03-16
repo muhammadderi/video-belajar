@@ -52,7 +52,10 @@ export const deleteUser = async (userId) => {
     const response = await usersApi.delete(`/users/${userId}`);
     return response.data;
   } catch (error) {
-    "Error deleted user:", error.response?.data || error.message;
+    console.error(
+      "Error deleting user:",
+      error.response?.data || error.message
+    );
     throw error;
   }
 };

@@ -6,25 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getUser } from "../services/usersApi";
 import useUserStore from "../zustand/user";
+import useApi from "../customHooks/useApi";
 
 function Login() {
-  // const users = JSON.parse(localStorage.getItem("users")) || [];
   const navigate = useNavigate();
-  const [users, setUsers] = useState([]);
+  const { users } = useApi();
   const { setUserLogin } = useUserStore();
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const user = await getUser();
-        setUsers(user);
-      } catch (error) {
-        console.log("Error fetching users");
-        throw error;
-      }
-    };
-    fetchUser();
-  }, []);
 
   const [formLogin, setFormLogin] = useState({
     email: "",
@@ -41,14 +28,12 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const userData = users.find(
+    const userData = users?.find(
       (user) =>
         user.email === formLogin.email && user.password === formLogin.password
     );
 
     if (userData) {
-      // localStorage.setItem("loginUsers", JSON.stringify(userData));
-      // localStorage.setItem("userActive", "true");
       setUserLogin(userData);
 
       setFormLogin({

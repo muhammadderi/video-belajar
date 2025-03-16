@@ -13,9 +13,9 @@ const Home = () => {
           height="h-[400px] relative bg-cover bg-center"
           url="bg-[url(assets\home\section-1\bg-section-1.jpg)]"
         >
-          <article className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80 flex items-center justify-center flex-col px-[140px]">
-            <div className="w-[280px] md:w-[920px]">
-              <h1 className="font-poppins font-bold md:text-5xl md:leading-[52px] text-[24px] leading-[26.4px] text-center text-white">
+          <article className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80 flex items-center justify-center flex-col md:p-[60px] lg:px-[140px]">
+            <div className="w-[280px] lg:w-[920px] ">
+              <h1 className="font-poppins font-bold lg:text-5xl lg:leading-[52px] text-[24px] leading-[26.4px] text-center text-white">
                 Revolusi Pembelajaran: Temukan Ilmu Baru melalui Platform Video{" "}
                 Interaktif!
               </h1>
@@ -79,7 +79,7 @@ const Home = () => {
               Daftarkan dirimu untuk mendapatkan informasi terbaru dan penawaran
               spesial dari program-program terbaik hariesok.id
             </p>
-            <div className="md:relative flex flex-col items-center gap-3 md:w-[525px] w-[280px]">
+            <div className="md:relative flex flex-col items-center gap-3 md:w-[400px] lg:w-[525px] w-[280px]">
               <div className="relative w-full">
                 <input
                   type="text"

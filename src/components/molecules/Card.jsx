@@ -12,10 +12,8 @@ const Card = ({
   position,
   price,
 }) => {
-
-  
   return (
-    <div className="md:w-[360px] w-full  rounded-[10px] border p-5 mb-3">
+    <div className="rounded-[10px] w-full border p-5 mb-3">
       <div className="flex flex-col md:flex-col gap-1">
         <img
           src={`${img}.jpg`}

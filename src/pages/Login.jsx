@@ -4,19 +4,23 @@ import Label from "../components/molecules/InputField";
 import Button from "../components/atoms/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getUser } from "../services/usersApi";
-import useUserStore from "../zustand/user";
-import useApi from "../customHooks/useApi";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers, setUserLogin } from "../../store/redux/usersSlice";
 
 function Login() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { users } = useApi();
-  const { setUserLogin } = useUserStore();
+
+  const { users } = useSelector((state) => state.users);
 
   const [formLogin, setFormLogin] = useState({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch]);
 
   const handleChange = (e) => {
     setFormLogin({
@@ -34,7 +38,7 @@ function Login() {
     );
 
     if (userData) {
-      setUserLogin(userData);
+      dispatch(setUserLogin(userData));
 
       setFormLogin({
         email: "",

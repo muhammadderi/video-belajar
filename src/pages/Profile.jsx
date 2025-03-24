@@ -8,29 +8,32 @@ import useUserStore from "../zustand/user";
 import { deleteUser, updateUser } from "../services/usersApi";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "antd";
+import { useDispatch, useSelector } from "react-redux";
 
 const Profile = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showInput, setShowInput] = useState(false);
-  const { userLogin, setUserLogin } = useUserStore();
+  const dispatch = useDispatch();
+  // const { userLogin, setUserLogin } = useUserStore();
+
+  const loggedInUser = useSelector((state) => state.users.loggedInUser);
   const [profile, setProfile] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setProfile(userLogin);
-  }, [userLogin]);
+    setProfile(loggedInUser);
+  }, [loggedInUser]);
 
   const handleClickImage = () => {
     setShowInput(true);
   };
 
   useEffect(() => {
-    if (userLogin.length === 0) {
+    if (!loggedInUser || loggedInUser.length === 0) {
       toast.error("Session Habis, silahkan login kembali");
       navigate("/login");
-    } else {
     }
-  }, []);
+  }, [loggedInUser]);
 
   const handleDeleteImage = () => {
     setProfile((prevProfile) => ({
@@ -86,11 +89,8 @@ const Profile = () => {
       const updatedUser = {
         ...profile,
       };
-
-      const updatedResponse = await updateUser(userLogin.id, updatedUser);
-      setUserLogin(updatedResponse);
-      setProfile(updatedResponse);
-      console.log(updatedResponse);
+      const updatedResponse = await updateUser(loggedInUser.id, updatedUser);
+      dispatch({ type: "user/updateUser", payload: updatedResponse });
       toast.success("Profil berhasil diperbarui!");
     } catch (error) {
       console.error("Gagal update user profile", error);
@@ -107,7 +107,7 @@ const Profile = () => {
       cancelText: "Tidak",
       onOk: async () => {
         try {
-          const deletedUser = await deleteUser(userLogin.id);
+          const deletedUser = await deleteUser(loggedInUser.id);
           console.log(deletedUser);
           toast.success("user berhasil di hapus");
           setUserLogin(deleteUser);

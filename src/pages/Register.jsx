@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AuthLayout from "../components/templates/AuthLayout";
 import Label from "../components/molecules/InputField";
 import Button from "../components/atoms/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { createUser, getUser } from "../services/usersApi.js";
-import useApi from "../customHooks/useApi.js";
+import { createUser } from "../services/usersApi.js";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers, setUserLogin } from "../../store/redux/usersSlice.js";
 
 function Register() {
   const navigate = useNavigate();
-  const { user } = useApi();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch]);
+
+  const { users } = useSelector((state) => state.users);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -49,7 +56,7 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const emailExist = user.some((users) => users.email === formData.email);
+    const emailExist = users.some((users) => users.email === formData.email);
 
     if (!validateNumber[formData.country]?.test(formData.phone)) {
       toast.warn("Nomer telpon tidak valid!!", {
@@ -70,7 +77,8 @@ function Register() {
       toast.error("Email sudah pernah digunakan!", { position: "top-center" });
     } else {
       try {
-        await createUser(formData);
+        const newUser = await createUser(formData);
+        dispatch(setUserLogin(newUser));
         setFormData({
           fullName: "",
           email: "",
@@ -81,6 +89,7 @@ function Register() {
         });
 
         toast.success("Pendaftaran berhasil", { position: "top-center" });
+
         navigate("/login");
       } catch (error) {
         toast.error("Error posting user data:", error);

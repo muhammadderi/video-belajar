@@ -1,27 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Card from "../molecules/Card";
-import { getEducationVideos } from "../../services/api";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchEducationList } from "../../../store/redux/usersSlice";
 
 const CardList = () => {
-  const [data, setData] = useState([]);
+  const dispatch = useDispatch();
+  const { education } = useSelector((state) => state.users);
 
   useEffect(() => {
-    const fetchEducationVideos = async () => {
-      try {
-        const data = await getEducationVideos();
-
-        setData(data);
-      } catch (error) {
-        console.log("Error fething videos :", error);
-      }
-    };
-
-    fetchEducationVideos();
-  }, []);
+    dispatch(fetchEducationList());
+  }, [dispatch]);
 
   return (
     <div className="md:grid md:grid-flow-row md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-2 gap-2">
-      {data.map((item, index) => (
+      {education.map((item, index) => (
         <Card
           key={index}
           img={item.images}

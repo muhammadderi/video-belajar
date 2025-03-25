@@ -4,11 +4,11 @@ import Footer from "../components/organisms/Footer";
 import Button from "../components/atoms/Button";
 import InputFieldset from "../components/molecules/InputFieldset";
 import { toast } from "react-toastify";
-import useUserStore from "../zustand/user";
 import { deleteUser, updateUser } from "../services/usersApi";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
+import { logout, setUserLogin } from "../../store/redux/usersSlice";
 
 const Profile = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -29,11 +29,11 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    if (!loggedInUser || loggedInUser.length === 0) {
+    if (!loggedInUser) {
       toast.error("Session Habis, silahkan login kembali");
       navigate("/login");
     }
-  }, [loggedInUser]);
+  }, [loggedInUser, navigate]);
 
   const handleDeleteImage = () => {
     setProfile((prevProfile) => ({
@@ -63,6 +63,8 @@ const Profile = () => {
   };
 
   useEffect(() => {
+    if (!profile || !profile.country) return;
+
     if (profile.country === "Indonesia") {
       setProfile((prev) => ({ ...prev, country: "+62" }));
     } else if (profile.country === "Inggris") {
@@ -90,10 +92,9 @@ const Profile = () => {
         ...profile,
       };
       const updatedResponse = await updateUser(loggedInUser.id, updatedUser);
-      dispatch({ type: "user/updateUser", payload: updatedResponse });
+      dispatch(setUserLogin(updatedResponse));
       toast.success("Profil berhasil diperbarui!");
     } catch (error) {
-      console.error("Gagal update user profile", error);
       toast.error("Gagal memperbarui profil.");
     }
   };
@@ -107,14 +108,13 @@ const Profile = () => {
       cancelText: "Tidak",
       onOk: async () => {
         try {
-          const deletedUser = await deleteUser(loggedInUser.id);
-          console.log(deletedUser);
-          toast.success("user berhasil di hapus");
-          setUserLogin(deleteUser);
+          await deleteUser(loggedInUser.id);
+          dispatch(logout());
           setProfile(deleteUser);
+          toast.success("user berhasil di hapus");
           navigate("/");
         } catch (error) {
-          console.log("Error deleteing data :", error);
+          console.log("Error deleting data :", error);
         }
       },
     });

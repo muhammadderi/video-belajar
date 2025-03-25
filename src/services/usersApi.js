@@ -50,13 +50,15 @@ export const updateUser = async (userId, updatedData) => {
 export const deleteUser = async (userId) => {
   try {
     const response = await usersApi.delete(`/users/${userId}`);
-    return response.data;
+    setTimeout(() => {
+      return response.data;
+    }, 3000);
   } catch (error) {
     console.error(
       "Error deleting user:",
       error.response?.data || error.message
     );
-    throw error;
+    // throw error;
   }
 };
 

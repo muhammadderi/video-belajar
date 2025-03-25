@@ -108,7 +108,7 @@ const NavbarHome = () => {
                       Pesanan Saya
                     </li>
                     <li
-                      onClick={handleLogout}
+                      onClick={() => handleLogout()}
                       className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                     >
                       <button>Keluar</button>
@@ -116,6 +116,56 @@ const NavbarHome = () => {
                   </ul>
                 )}
               </div>
+            </div>
+
+            <div
+              className="sm:hidden relative inline-block"
+              ref={mobileMenuRef}
+            >
+              <div
+                className="p-2 cursor-pointer"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                <button>
+                  <img
+                    src="/Logo/humberger.png"
+                    alt="humberger-logo"
+                    className="w-[24px] h-[24px]"
+                  />
+                </button>
+              </div>
+
+              {isOpen && (
+                // fixed inset-x-0 top-14 bg-white text-[#333333AD] border rounded-lg shadow-lg z-50 w-full
+                <ul
+                  className="fixed inset-x-0 top-14 bg-white text-[#333333AD] border rounded-lg shadow-lg z-50 w-full"
+                  onMouseEnter={() => setIsOpen(true)}
+                  onMouseLeave={() => setIsOpen(false)}
+                >
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-[#FF5C2B]">
+                    <Link to="/profile">Profil Saya</Link>
+                  </li>
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-[#FF5C2B]">
+                    Kelas Saya
+                  </li>
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-[#FF5C2B]">
+                    Pesanan Saya
+                  </li>
+                  <li
+                    onClick={() => handleLogout()}
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-[#FF5C2B]"
+                  >
+                    <button className="flex gap-1">
+                      Keluar{" "}
+                      <img
+                        src="/Logo/logout.png"
+                        alt="Logout"
+                        className="w-[24px] h-[24px]"
+                      />
+                    </button>
+                  </li>
+                </ul>
+              )}
             </div>
           </nav>
         </div>
@@ -153,6 +203,64 @@ const NavbarHome = () => {
                 }
                 onClick={() => navigate("/register")}
               />
+            </div>
+
+            <div
+              className="sm:hidden relative inline-block"
+              ref={mobileMenuRef}
+            >
+              <div
+                className="p-2 cursor-pointer"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                <button>
+                  <img
+                    src="/Logo/humberger.png"
+                    alt="humberger-logo"
+                    className="w-[24px] h-[24px]"
+                  />
+                </button>
+              </div>
+
+              {isOpen && (
+                <ul
+                  className="fixed inset-x-0 top-14 bg-white text-[#333333AD] border rounded-lg shadow-lg z-50 w-full"
+                  onMouseEnter={() => setIsOpen(true)}
+                  onMouseLeave={() => setIsOpen(false)}
+                >
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-[#3ECF4C]">
+                    <Link>Beranda</Link>
+                  </li>
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer  hover:text-[#3ECF4C]">
+                    <Link>Kategori</Link>
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => navigate("/login")}
+                  >
+                    <Button
+                      bgcolor={"bg-[#3ECF4C]"}
+                      textButton={"Login"}
+                      type={"button"}
+                      color={
+                        "text-[white] w-full py-[10px] text-[16px] font-bold leading-[22.4px] hover:bg-white hover:text-[#3ECF4C] hover:border-[#3ECF4C] hover:border"
+                      }
+                    />
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => navigate("/register")}
+                  >
+                    <Button
+                      textButton={"Register"}
+                      type={"button"}
+                      color={
+                        "text-[#3ECF4C] border border-[#3ECF4C] py-[10px] w-full text-[16px] font-bold leading-[22.4px] hover:bg-[#3ECF4C] hover:text-white"
+                      }
+                    />
+                  </li>
+                </ul>
+              )}
             </div>
           </nav>
         </div>

@@ -3,14 +3,14 @@ import CardList from "../molecules/CardList";
 
 const VideoCollections = () => {
   return (
-    <div className="px-10 md:px-28 h-screen">
+    <div className="px-10 md:px-28 h-fit">
       <h3 className="capitalize text-3xl font-medium">
         koleksi video pembelajaran unggulan
       </h3>
       <p className="capitalize text-md">
         jelajahi dunia digital melalui pilihan kami!
       </p>
-      <div className="flex gap-5 py-5 overflow-scroll">
+      <div className="flex gap-5 py-5 overflow-scroll md:overflow-auto">
         <Button
           text={"Semua Kelas"}
           className={

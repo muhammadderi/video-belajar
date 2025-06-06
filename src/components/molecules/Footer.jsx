@@ -10,7 +10,7 @@ const Footer = () => {
   const showButton2 = () => setShow2((prev) => !prev);
 
   return (
-    <div className="flex flex-col justify-between md:px-32 p-10 ">
+    <div className="flex flex-col justify-between  p-10 ">
       <div>
         <div className="flex flex-col md:flex-row justify-between items-center py-5">
           <div className="flex flex-col justify-center items-start ">

@@ -1,4 +1,4 @@
-const Button = ({ type, onClick, className, text, disabled }) => {
+const Button = ({ type, onClick, className, text, disabled, img, alt }) => {
   return (
     <div>
       <button
@@ -7,7 +7,7 @@ const Button = ({ type, onClick, className, text, disabled }) => {
         className={className}
         disabled={disabled}
       >
-        {text}
+        {img} {text}
       </button>
     </div>
   );

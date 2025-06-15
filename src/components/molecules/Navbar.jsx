@@ -1,13 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../atoms/Button";
+import { useNavigate } from "react-router-dom";
+import useUserLogin from "../../zustand/User";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { user } = useUserLogin();
+  const navigate = useNavigate();
+  const isUserLogin =
+    (user && typeof user === "object" && Object.keys(user).length > 0) || "";
 
   return (
-    <div className="border px-4 py-5 md:px-10">
+    <div className="border px-4 py-5 md:px-28">
       <div className="flex justify-between items-center">
-        <img src="./logo.png" alt="logo" className="bg-green" />
+        <img
+          src="./logo.png"
+          alt="logo"
+          className="bg-green"
+          onClick={() => navigate("/")}
+        />
 
         <button
           className="md:hidden"
@@ -29,16 +40,30 @@ const Navbar = () => {
           </svg>
         </button>
 
-        <div className="hidden md:flex gap-5 text-xl items-center">
-          <p className="text-[#333333]">Kategori</p>
+        <div className="hidden md:flex gap-5 text-md items-center">
           <Button
-            text={"Login"}
-            className="bg-[#3ECF4C] text-white rounded-xl py-2 px-10 font-bold hover:bg-white hover:border border-[#3ECF4C] hover:text-[#3ECF4C]"
+            text={"Kategori"}
+            className="hover:font-bold text-[#333333]"
+            onClick={() => navigate("/allprofile")}
           />
-          <Button
-            text={"Register"}
-            className="text-[#3ECF4C] rounded-xl py-2 px-10 border border-[#3ECF4C] font-bold hover:bg-[#3ECF4C] hover:text-white"
-          />
+          {isUserLogin ? (
+            <div className="w-11 h-11 rounded-lg">
+              <img src={user.image} alt="profile-user" />
+            </div>
+          ) : (
+            <div className="flex gap-4">
+              <Button
+                text={"Login"}
+                onClick={() => navigate("/login")}
+                className="bg-[#3ECF4C] text-white rounded-xl py-2 px-10 font-bold hover:bg-white hover:border border-[#3ECF4C] hover:text-[#3ECF4C]"
+              />
+              <Button
+                text={"Register"}
+                onClick={() => navigate("/register")}
+                className="text-[#3ECF4C] rounded-xl py-2 px-10 border border-[#3ECF4C] font-bold hover:bg-[#3ECF4C] hover:text-white"
+              />
+            </div>
+          )}
         </div>
       </div>
 

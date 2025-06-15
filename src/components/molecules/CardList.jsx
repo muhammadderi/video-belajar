@@ -3,11 +3,22 @@ import { getEducationVideos } from "../../services/videosApi";
 import Card from "../atoms/Card";
 import Button from "../atoms/Button";
 
-const CardList = () => {
+const CardList = ({ sortOrder, searchTerm }) => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const totalPage = Math.ceil(videos.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const curVideos = videos.slice(startIndex, startIndex + itemsPerPage);
+  const filteredVideos = curVideos.filter((item) =>
+    item.title?.toLowerCase().includes(searchTerm?.toLowerCase() || "")
+  );
+  const currentVideos = [...filteredVideos].sort((a, b) => {
+    if (sortOrder === "az") return a.title.localeCompare(b.title);
+    if (sortOrder === "za") return b.title.localeCompare(a.title);
+    return 0;
+  });
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -22,10 +33,6 @@ const CardList = () => {
     };
     fetchVideos();
   }, []);
-
-  const totalPage = Math.ceil(videos.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentVideos = videos.slice(startIndex, startIndex + itemsPerPage);
 
   const gotoNextPage = () => {
     if (currentPage < totalPage) setCurrentPage((prev) => prev + 1);

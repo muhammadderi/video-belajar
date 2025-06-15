@@ -19,7 +19,7 @@ const Hero = () => {
             <Button
               text={"Temukan Video Course Untuk Di Pelajari"}
               className={
-                "bg-[#3ECF4C] text-white rounded-xl md:p-5 p-2 font-bold md:text-md hover:bg-white hover:text-[#3ECF4C]"
+                "bg-[#3ECF4C] text-white rounded-xl md:px-5 md:py-3 p-2 font-bold md:text-md hover:bg-white hover:text-[#3ECF4C]"
               }
             />
           </div>

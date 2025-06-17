@@ -37,6 +37,15 @@ export const createUserVideos = async (userData) => {
   }
 };
 
+export const updateUsers = async (userId, updatedData) => {
+  try {
+    const data = await api.put(`/users/${userId}`, updatedData);
+    return response.data;
+  } catch (error) {
+    throw new Error("Error updating users", error.message);
+  }
+};
+
 export const forgotPassword = async ({ email, password }) => {
   try {
     const getUser = await api.get(`/users?email=${email}`);

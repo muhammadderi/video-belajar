@@ -1,8 +1,34 @@
 import Button from "../atoms/Button";
 import Navbar from "../molecules/Navbar";
 import Footer from "../molecules/Footer";
+import useUserLogin from "../../zustand/User";
+import { useState } from "react";
+import { updateUsers } from "../../services/videosApi";
 
 const MyProfile = () => {
+  const { user } = useUserLogin();
+  const [data, setData] = useState({
+    fullName: "",
+    email: "",
+    country: "",
+    phone: "",
+  });
+
+  export const handleUpdate = async (userId, updatedData) => {
+    try {
+      const response = await api.put(`/users/${userId}`, updatedData);
+      return response.data;
+    } catch (error) {
+      // Tambahan: log detail error asli juga
+      console.error(
+        "API error response:",
+        error.response?.data || error.message
+      );
+      throw new Error("Error updating users");
+    }
+  };
+
+  console.log(user);
   return (
     <div>
       <Navbar />
@@ -77,8 +103,8 @@ const MyProfile = () => {
                 />
               </div>
               <div>
-                <h1 className="font-bold text-xl">Jennie</h1>
-                <p>jeni@gmail.com</p>
+                <h1 className="font-bold text-xl">{user.fullName}</h1>
+                <p>{user.email}</p>
                 <Button
                   text={"Ganti Foto Profil"}
                   className={"text-red-500 font-bold"}
@@ -86,60 +112,78 @@ const MyProfile = () => {
               </div>
             </div>
             <hr />
-            <form action="">
+            <form onSubmit={handleUpdate}>
               <div className="flex gap-2">
                 <div class="relative w-full max-w-md">
                   <label
                     for="fullname"
-                    class="absolute -top-2 left-3 bg-white px-1 text-gray-500 hover:text-green-500  text-sm z-10"
+                    className="absolute -top-2 left-3 bg-white px-1 text-gray-900 hover:text-green-500  text-sm z-10"
                   >
                     Nama Lengkap
                   </label>
                   <input
                     type="text"
                     id="fullname"
-                    value="Jennie Ruby Jane"
-                    class="w-full border border-gray-500 hover:border-green-500 text-gray-900 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-green-500"
+                    value={data.fullName}
+                    onChange={(e) =>
+                      setData({ ...data, fullName: e.target.value })
+                    }
+                    className="w-full border border-gray-500 hover:border-green-500 placeholder:text-gray-900  rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-green-500"
+                    placeholder={user.fullName}
                   />
                 </div>
                 <div class="relative w-full max-w-md">
                   <label
-                    for="fullname"
-                    class="absolute -top-2 left-3 bg-white px-1 text-gray-500 hover:text-green-500 text-sm z-10"
+                    for="email"
+                    className="absolute -top-2 left-3 bg-white px-1 text-gray-900 hover:text-green-500 text-sm z-10"
                   >
                     E-Mail
                   </label>
                   <input
-                    type="text"
-                    id="fullname"
-                    value="Jennie Ruby Jane"
-                    class="w-full border border-gray-500 hover:border-green-500 text-gray-900 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-green-500"
+                    type="email"
+                    id="email"
+                    className="w-full border border-gray-500 hover:border-green-500 placeholder:text-gray-900 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-green-500"
+                    placeholder={user.email}
+                    value={data.email}
+                    onChange={(e) =>
+                      setData({ ...data, email: e.target.value })
+                    }
                   />
                 </div>
                 <select
-                  name=""
-                  id=""
+                  name="country"
+                  id="country"
+                  value={data.country}
+                  onChange={(e) =>
+                    setData({ ...data, country: e.target.value })
+                  }
                   className="border border-gray-500 hover:border-green-500 rounded-md"
                 >
-                  <option value="">+62</option>
+                  <option value="+62">+62</option>
+                  <option value="+1">+1</option>
                 </select>
                 <div class="relative w-full max-w-md">
                   <label
-                    for="fullname"
+                    for="handphone"
                     class="absolute -top-2 left-3 bg-white px-1 text-gray-500 hover:text-green-500 text-sm z-10"
                   >
                     No.Hp
                   </label>
                   <input
-                    type="text"
-                    id="fullname"
-                    value="Jennie Ruby Jane"
-                    class="w-full border border-gray-500 hover:border-green-500 text-gray-900 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-green-500"
+                    type="number"
+                    id="phone"
+                    placeholder={user.phone}
+                    value={data.phone}
+                    onChange={(e) =>
+                      setData({ ...data, phone: e.target.value })
+                    }
+                    class="w-full border border-gray-500 hover:border-green-500 placeholder:text-gray-900 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-green-500"
                   />
                 </div>
               </div>
               <div className="text-right my-5">
                 <Button
+                  type={"submit"}
                   text={"Simpan"}
                   className={"bg-green-500 text-white py-2 px-5 rounded-xl"}
                 />

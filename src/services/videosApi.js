@@ -1,5 +1,4 @@
 import axios from "axios";
-import { toast } from "react-toastify";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -39,7 +38,8 @@ export const createUserVideos = async (userData) => {
 
 export const updateUsers = async (userId, updatedData) => {
   try {
-    const data = await api.put(`/users/${userId}`, updatedData);
+    const response = await api.put(`/users/${userId}`, updatedData);
+
     return response.data;
   } catch (error) {
     throw new Error("Error updating users", error.message);

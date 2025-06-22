@@ -46,7 +46,7 @@ const Register = () => {
       </nav>
 
       <main className="md:p-10 flex justify-center items-center my-5">
-        <div className="md:w-1/2 shadow-lg p-6 rounded-lg">
+        <div className="md:w-1/2 w-full shadow-lg p-6 rounded-lg">
           <div className="flex flex-col justify-center items-center mb-6">
             <h1 className="font-bold text-2xl">Pendaftaran Akun</h1>
             <p>Yuk, daftarkan akunmu sekarang juga!</p>

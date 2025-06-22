@@ -64,7 +64,7 @@ const CardList = ({ sortOrder, searchTerm, className }) => {
           />
         ))}
       </div>
-      <div className="flex justify-center items-center gap-10 py-4 ">
+      <div className="flex justify-center items-center md:gap-10 gap-8 py-4 ">
         <Button
           onClick={gotoPrevPage}
           disabled={currentPage === 1}

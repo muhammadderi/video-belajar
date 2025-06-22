@@ -6,13 +6,18 @@ import useUserLogin from "../../zustand/User";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
-  const { user } = useUserLogin();
+  const { user, logout } = useUserLogin();
   const navigate = useNavigate();
   const isUserLogin =
     (user && typeof user === "object" && Object.keys(user).length > 0) || "";
 
   const handleMenu = () => {
     setShow(!show);
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
   };
 
   return (
@@ -52,7 +57,7 @@ const Navbar = () => {
             onClick={() => navigate("/allProduct")}
           />
           {isUserLogin ? (
-            <div className="w-11 h-11 rounded-lg flex justify-center items-center relative inline-block text-left">
+            <div className="w-11 h-11 rounded-lg flex justify-center items-center relative text-left">
               <img src="/bg-hero.jpg" alt="profile-user" onClick={handleMenu} />
             </div>
           ) : (
@@ -74,15 +79,41 @@ const Navbar = () => {
 
       {open && (
         <div className="flex flex-col mt-4 gap-4 text-lg md:hidden w-full">
-          <p className="text-[#333333] text-center">Kategori</p>
-          <Button
-            text={"Login"}
-            className="w-full bg-[#3ECF4C] text-white rounded-xl py-2 px-10 font-bold hover:bg-white hover:border border-[#3ECF4C] hover:text-[#3ECF4C]"
-          />
-          <Button
-            text={"Register"}
-            className="w-full text-[#3ECF4C] rounded-xl py-2 px-10 border border-[#3ECF4C] font-bold hover:bg-[#3ECF4C] hover:text-white"
-          />
+          {isUserLogin ? (
+            <div className="flex flex-col gap-4 text-lg md:hidden w-full">
+              <h1 className="font-bold text-center capitalize text-xl text-[#3ECF4C]">
+                {user.fullName}
+              </h1>
+              <Button
+                text={"Profil Saya"}
+                onClick={() => navigate("/myProfile")}
+                className="w-full bg-[#3ECF4C] text-white rounded-xl py-2 px-10 font-bold hover:bg-white hover:border border-[#3ECF4C] hover:text-[#3ECF4C]"
+              />
+              <Button
+                text={"Keluar"}
+                onClick={handleLogout}
+                className="w-full bg-[#3ECF4C] text-white rounded-xl py-2 px-10 font-bold hover:bg-white hover:border border-[#3ECF4C] hover:text-[#3ECF4C]"
+              />
+            </div>
+          ) : (
+            <div className="flex flex-col mt-4 gap-4 text-lg md:hidden w-full">
+              <Button
+                text={"Kategori"}
+                className="w-full hover:font-bold text-[#333333] "
+                onClick={() => navigate("/allProduct")}
+              />
+              <Button
+                text={"Login"}
+                onClick={() => navigate("/login")}
+                className="w-full bg-[#3ECF4C] text-white rounded-xl py-2 px-10 font-bold hover:bg-white hover:border border-[#3ECF4C] hover:text-[#3ECF4C]"
+              />
+              <Button
+                text={"Register"}
+                onClick={() => navigate("/register")}
+                className="w-full text-[#3ECF4C] rounded-xl py-2 px-10 border border-[#3ECF4C] font-bold hover:bg-[#3ECF4C] hover:text-white"
+              />
+            </div>
+          )}
         </div>
       )}
 
@@ -91,12 +122,31 @@ const Navbar = () => {
           <Button
             className={"block w-full px-4 py-2 text-left hover:bg-gray-100"}
             text={"Profil Saya"}
+            onClick={() => navigate("/myProfile")}
           />
           <hr />
-          <Button
-            className={"block w-full px-4 py-2 text-left hover:bg-gray-100"}
-            text={"Keluar"}
-          />
+          <div className="flex items-center" onClick={handleLogout}>
+            <Button
+              className={"block w-full px-4 py-2 text-left hover:bg-gray-100"}
+              text={"Keluar"}
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-log-out-icon lucide-log-out"
+            >
+              <path d="m16 17 5-5-5-5" />
+              <path d="M21 12H9" />
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            </svg>
+          </div>
         </div>
       )}
     </div>

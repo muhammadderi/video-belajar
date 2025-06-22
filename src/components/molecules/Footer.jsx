@@ -10,7 +10,7 @@ const Footer = () => {
   const showButton2 = () => setShow2((prev) => !prev);
 
   return (
-    <div className="flex flex-col justify-between p-10 px-28 ">
+    <div className="flex flex-col justify-between px-10 md:px-28 ">
       <div>
         <div className="flex flex-col md:flex-row justify-between items-center py-5">
           <div className="flex flex-col justify-center items-start ">
@@ -62,7 +62,7 @@ const Footer = () => {
                     )}
                   </div>
                 </div>
-                <div className={`${show ? "hidden" : "block"} md:block}`}>
+                <div className={`${show ? "block" : "hidden"} md:block}`}>
                   <p>Digital dan Teknologi</p>
                   <p>Pemasaran</p>
                   <p>Manajemen Bisnis</p>

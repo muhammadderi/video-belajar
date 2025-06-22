@@ -137,8 +137,8 @@ const MyProfile = () => {
                 )}
               </div>
               <div>
-                <h1 className="font-bold text-xl">{user.fullName}</h1>
-                <p>{user.email}</p>
+                <h1 className="font-bold text-xl">{user?.fullName}</h1>
+                <p>{user?.email}</p>
                 <Button
                   text={"Ganti Foto Profil"}
                   className={"text-red-500 font-bold"}

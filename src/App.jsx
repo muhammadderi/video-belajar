@@ -6,6 +6,7 @@ import ForgotPassword from "./components/pages/ForgotPassword";
 import MyProfile from "./components/pages/MyProfile";
 import AllProduct from "./components/pages/AllProduct";
 import NotFound from "./components/atoms/NotFound";
+import ProtectedRoute from "./auth/ProtectRoute";
 
 function App() {
   return (
@@ -16,7 +17,14 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
-        <Route path="/myProfile" element={<MyProfile />} />
+        <Route
+          path="/myProfile"
+          element={
+            <ProtectedRoute>
+              <MyProfile />
+            </ProtectedRoute>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

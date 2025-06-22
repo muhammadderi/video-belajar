@@ -3,7 +3,7 @@ import { getEducationVideos } from "../../services/videosApi";
 import Card from "../atoms/Card";
 import Button from "../atoms/Button";
 
-const CardList = ({ sortOrder, searchTerm }) => {
+const CardList = ({ sortOrder, searchTerm, className }) => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -50,7 +50,7 @@ const CardList = ({ sortOrder, searchTerm }) => {
     );
   return (
     <>
-      <div className="md:grid md:grid-flow-row md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-2 gap-2 justify-end">
+      <div className={className}>
         {currentVideos.map((video, index) => (
           <Card
             key={index}

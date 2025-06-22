@@ -5,10 +5,15 @@ import useUserLogin from "../../zustand/User";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [show, setShow] = useState(false);
   const { user } = useUserLogin();
   const navigate = useNavigate();
   const isUserLogin =
     (user && typeof user === "object" && Object.keys(user).length > 0) || "";
+
+  const handleMenu = () => {
+    setShow(!show);
+  };
 
   return (
     <div className="border px-4 py-5 md:px-28">
@@ -40,15 +45,15 @@ const Navbar = () => {
           </svg>
         </button>
 
-        <div className="hidden md:flex gap-5 text-md items-center">
+        <div className="hidden md:flex gap-5 text-md items-center ">
           <Button
             text={"Kategori"}
             className="hover:font-bold text-[#333333]"
-            onClick={() => navigate("/allprofile")}
+            onClick={() => navigate("/allProduct")}
           />
           {isUserLogin ? (
-            <div className="w-11 h-11 rounded-lg">
-              <img src={user.image} alt="profile-user" />
+            <div className="w-11 h-11 rounded-lg flex justify-center items-center relative inline-block text-left">
+              <img src="/bg-hero.jpg" alt="profile-user" onClick={handleMenu} />
             </div>
           ) : (
             <div className="flex gap-4">
@@ -77,6 +82,20 @@ const Navbar = () => {
           <Button
             text={"Register"}
             className="w-full text-[#3ECF4C] rounded-xl py-2 px-10 border border-[#3ECF4C] font-bold hover:bg-[#3ECF4C] hover:text-white"
+          />
+        </div>
+      )}
+
+      {show && (
+        <div className="absolute right-0 mt-2 w-56 bg-white border rounded shadow-md z-10">
+          <Button
+            className={"block w-full px-4 py-2 text-left hover:bg-gray-100"}
+            text={"Profil Saya"}
+          />
+          <hr />
+          <Button
+            className={"block w-full px-4 py-2 text-left hover:bg-gray-100"}
+            text={"Keluar"}
           />
         </div>
       )}

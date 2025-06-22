@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../atoms/Button";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/allProduct");
+  };
   return (
     <div className="flex justify-center items-center py-20">
       <div className="relative bg-[url('/bg-hero.jpg')] bg-cover bg-center h-[500px] md:h-[400px] w-5/6">
@@ -21,6 +27,7 @@ const Hero = () => {
               className={
                 "bg-[#3ECF4C] text-white rounded-xl md:px-5 md:py-3 p-2 font-bold md:text-md hover:bg-white hover:text-[#3ECF4C]"
               }
+              onClick={handleClick}
             />
           </div>
         </div>

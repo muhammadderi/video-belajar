@@ -4,7 +4,7 @@ import CardList from "../molecules/CardList";
 import Footer from "../molecules/Footer";
 import { useState } from "react";
 
-const AllProfile = () => {
+const AllProduct = () => {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
@@ -17,7 +17,7 @@ const AllProfile = () => {
   return (
     <div>
       <Navbar />
-      <div className="p-10">
+      <div className="py-10 px-32">
         <h1 className="font-bold text-xl">
           Koleksi Video Pembelajaran Unggulan
         </h1>
@@ -25,7 +25,7 @@ const AllProfile = () => {
           jelajahi dunia pengetahuan melalui pilihan kami
         </p>
       </div>
-      <div className="grid md:grid-cols-[30%_70%] grid-cols-1 px-10">
+      <div className="grid md:grid-cols-[30%_70%] grid-cols-1 py-10 px-32">
         <div className="border border-grey-500 p-5 my-3 rounded-md h-fit">
           <div className="flex justify-between py-2">
             <p>Filter</p>
@@ -363,7 +363,13 @@ const AllProfile = () => {
                 </div>
               </div>
             </div>
-            <CardList sortOrder={sortOrder} searchTerm={searchTerm} />
+            <CardList
+              sortOrder={sortOrder}
+              searchTerm={searchTerm}
+              className={
+                "md:grid md:grid-flow-row md:grid-cols-2 lg:grid-cols-2 sm:grid-cols-2 gap-2 justify-end"
+              }
+            />
           </div>
         </div>
       </div>
@@ -374,4 +380,4 @@ const AllProfile = () => {
   );
 };
 
-export default AllProfile;
+export default AllProduct;

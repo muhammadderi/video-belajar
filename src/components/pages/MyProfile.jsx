@@ -16,6 +16,7 @@ const MyProfile = () => {
     phone: "",
     image: "",
   });
+  console.log(user);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -36,7 +37,7 @@ const MyProfile = () => {
     }
 
     if (data.image && data.image !== user.image) {
-      updateFields.image = data.image;
+      formData.append("image", data.image);
     }
 
     if (Object.keys(updateFields).length === 0) {
@@ -120,8 +121,20 @@ const MyProfile = () => {
           </div>
           <div className="border border-gray-300 p-5 rounded-md">
             <div className="flex gap-5">
-              <div>
-                <img src={user.image} alt="profile" className="w-24 h-24" />
+              <div className="mb-3">
+                {user?.image?.jpg ? (
+                  <img
+                    src={user.image.jpg}
+                    alt="profile"
+                    className="w-24 h-24"
+                  />
+                ) : (
+                  <img
+                    src="bg-hero.jpg"
+                    alt="default profile"
+                    className="w-24 h-24"
+                  />
+                )}
               </div>
               <div>
                 <h1 className="font-bold text-xl">{user.fullName}</h1>

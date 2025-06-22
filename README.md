@@ -24,3 +24,8 @@ git clone https://github.com/muhammadderi/video-belajar.git
 cd video-belajar
 npm install
 npm run dev
+
+## 🚫 Catatan
+
+Proyek ini dibuat sendiri untuk keperluan belajar dan portfolio pribadi.  
+Mohon tidak mengklaim atau menyalin tanpa izin.

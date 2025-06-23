@@ -85,6 +85,11 @@ const Navbar = () => {
                 {user.fullName}
               </h1>
               <Button
+                text={"Kategori"}
+                className="w-full bg-[#3ECF4C] text-white rounded-xl py-2 px-10 font-bold hover:bg-white hover:border border-[#3ECF4C] hover:text-[#3ECF4C]"
+                onClick={() => navigate("/allProduct")}
+              />
+              <Button
                 text={"Profil Saya"}
                 onClick={() => navigate("/myProfile")}
                 className="w-full bg-[#3ECF4C] text-white rounded-xl py-2 px-10 font-bold hover:bg-white hover:border border-[#3ECF4C] hover:text-[#3ECF4C]"

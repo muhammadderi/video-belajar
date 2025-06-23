@@ -55,8 +55,8 @@ const ForgotPassword = () => {
         <img src="./logo.png" alt="logo" onClick={() => navigate("/")} />
       </nav>
 
-      <main className="md:p-10 flex justify-center items-center my-5">
-        <div className="md:w-1/2 shadow-lg p-6 rounded-lg">
+      <main className="md:p-10 flex justify-center items-center my-5 ">
+        <div className="md:w-1/2 md:shadow-lg p-6 rounded-lg">
           <div className="flex flex-col justify-center items-center mb-6">
             <h1 className="font-bold text-2xl">Lupa Kata Sandi</h1>
             <p>Silahkan masukkan email dan kata sandi baru mu!</p>

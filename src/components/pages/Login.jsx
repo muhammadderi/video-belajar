@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Input from "../atoms/Input";
 import Button from "../atoms/Button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getUsers } from "../../services/videosApi";
 import useUserLogin from "../../zustand/User";
 import { toast } from "react-toastify";
@@ -123,11 +123,11 @@ const Login = () => {
                 </button>
               </div>
             </div>
-            <a href="/forgotPassword">
+            <Link to="/forgotPassword">
               <h1 className="text-right text-gray-500 px-5 hover:font-bold">
                 Lupa Password?
               </h1>
-            </a>
+            </Link>
             <div className="px-5">
               <Button
                 text={"Daftar"}

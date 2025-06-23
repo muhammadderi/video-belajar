@@ -59,7 +59,7 @@ const MyProfile = () => {
     <div>
       <Navbar />
       <div>
-        <div className="grid grid-cols-[20%_80%] py-20 px-28 gap-5">
+        <div className="grid md:grid-cols-[20%_80%] grid-cols-1 md:py-20 md:px-28 gap-5 p-5">
           <div>
             <div className="mb-3">
               <h1 className="font-bold text-2xl">Ubah Profile</h1>
@@ -159,7 +159,7 @@ const MyProfile = () => {
             </div>
             <hr />
             <form onSubmit={handleUpdate}>
-              <div className="flex gap-2">
+              <div className="flex flex-col md:flex-row md:gap-2 gap-3">
                 <div className="relative w-full max-w-md">
                   <label
                     htmlFor="fullname"
@@ -196,36 +196,38 @@ const MyProfile = () => {
                     }
                   />
                 </div>
-                <select
-                  name="country"
-                  id="country"
-                  value={data.country}
-                  onChange={(e) =>
-                    setData({ ...data, country: e.target.value })
-                  }
-                  className="border border-gray-500 hover:border-green-500 rounded-md"
-                >
-                  <option>{user.country}</option>
-                  <option value="+1">+1</option>
-                  <option value="+62">+62</option>
-                </select>
-                <div className="relative w-full max-w-md">
-                  <label
-                    htmlFor="handphone"
-                    className="absolute -top-2 left-3 bg-white px-1 text-gray-500 hover:text-green-500 text-sm z-10"
-                  >
-                    No.Hp
-                  </label>
-                  <input
-                    type="number"
-                    id="phone"
-                    placeholder={user.phone}
-                    value={data.phone}
+                <div className="flex gap-2 w-full">
+                  <select
+                    name="country"
+                    id="country"
+                    value={data.country}
                     onChange={(e) =>
-                      setData({ ...data, phone: e.target.value })
+                      setData({ ...data, country: e.target.value })
                     }
-                    className="w-full border border-gray-500 hover:border-green-500 placeholder:text-gray-900 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-green-500"
-                  />
+                    className="border border-gray-500 hover:border-green-500 rounded-md"
+                  >
+                    <option>{user.country}</option>
+                    <option value="+1">+1</option>
+                    <option value="+62">+62</option>
+                  </select>
+                  <div className="relative w-full max-w-md">
+                    <label
+                      htmlFor="handphone"
+                      className="absolute -top-2 left-3 bg-white px-1 text-gray-500 hover:text-green-500 text-sm z-10"
+                    >
+                      No.Hp
+                    </label>
+                    <input
+                      type="number"
+                      id="phone"
+                      placeholder={user.phone}
+                      value={data.phone}
+                      onChange={(e) =>
+                        setData({ ...data, phone: e.target.value })
+                      }
+                      className="w-full border border-gray-500 hover:border-green-500 placeholder:text-gray-900 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-green-500"
+                    />
+                  </div>
                 </div>
               </div>
               <div className="text-right my-5">

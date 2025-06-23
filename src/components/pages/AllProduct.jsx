@@ -367,7 +367,7 @@ const AllProduct = () => {
               sortOrder={sortOrder}
               searchTerm={searchTerm}
               className={
-                "md:grid md:grid-flow-row md:grid-cols-2 lg:grid-cols-2 sm:grid-cols-2 gap-2 justify-end"
+                "grid md:grid-flow-row md:grid-cols-2 lg:grid-cols-2 sm:grid-cols-2 md:gap-2 gap-4 justify-end"
               }
             />
           </div>

@@ -62,7 +62,7 @@ const Footer = () => {
                     )}
                   </div>
                 </div>
-                <div className={`${show ? "block" : "hidden"} md:block}`}>
+                <div className={`${show ? "hidden" : "block"} md:block}`}>
                   <p>Digital dan Teknologi</p>
                   <p>Pemasaran</p>
                   <p>Manajemen Bisnis</p>

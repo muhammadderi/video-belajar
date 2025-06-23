@@ -10,7 +10,7 @@ const Card = ({
   price,
 }) => {
   return (
-    <div className="border rounded-xl shadow-md w-full max-w-md mx-auto p-4 flex flex-col gap-3 bg-white">
+    <div className="border rounded-xl shadow-md w-full mx-auto p-4 flex flex-col gap-3 bg-white">
       <div className="w-full h-40 overflow-hidden rounded-lg">
         <img src={image} alt={title} className="w-full h-full object-cover" />
       </div>

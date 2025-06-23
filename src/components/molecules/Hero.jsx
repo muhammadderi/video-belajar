@@ -8,7 +8,7 @@ const Hero = () => {
     navigate("/allProduct");
   };
   return (
-    <div className="flex justify-center items-center py-20">
+    <div className="flex justify-center items-center md:py-20 py-10">
       <div className="relative bg-[url('/bg-hero.jpg')] bg-cover bg-center h-[500px] md:h-[400px] w-5/6">
         <div className="absolute inset-0 bg-black/50">
           <div className="text-white flex flex-col justify-center items-center md:px-52 px-5 py-10 gap-4">

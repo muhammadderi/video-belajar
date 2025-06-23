@@ -302,7 +302,7 @@ const AllProduct = () => {
             </div>
           </div>
         </div>
-        <div className="p-5 flex justify-end gap-5 ">
+        <div className="md:p-5 flex justify-end gap-5 ">
           <div className="flex flex-col">
             <div className="flex justify-end gap-5 py-3">
               <div>

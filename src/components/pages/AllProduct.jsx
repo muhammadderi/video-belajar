@@ -25,7 +25,7 @@ const AllProduct = () => {
           jelajahi dunia pengetahuan melalui pilihan kami
         </p>
       </div>
-      <div className="grid md:grid-cols-[30%_70%] grid-cols-1 md:py-10 md:px-32 px-5">
+      <div className="grid md:grid-cols-[30%_70%] grid-cols-1  md:px-32 px-5">
         <div className="border border-grey-500 p-5 my-3 rounded-md h-fit">
           <div className="flex justify-between py-2">
             <p>Filter</p>

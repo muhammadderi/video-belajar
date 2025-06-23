@@ -44,7 +44,7 @@ const VideoCollections = () => {
       </div>
       <CardList
         className={
-          "grid md:grid-flow-row md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-2 md:gap-2 gap-4 justify-end py-3 md:py-0"
+          "grid md:grid-flow-row md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-2 md:gap-2 gap-4 md:justify-end py-3 md:py-0"
         }
       />
     </div>

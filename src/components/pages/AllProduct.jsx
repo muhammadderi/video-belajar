@@ -302,7 +302,7 @@ const AllProduct = () => {
             </div>
           </div>
         </div>
-        <div className="md:p-5 flex justify-end gap-5 ">
+        <div className="md:p-5 flex md:justify-end gap-5 ">
           <div className="flex flex-col">
             <div className="flex justify-end gap-5 py-3">
               <div>
@@ -367,7 +367,7 @@ const AllProduct = () => {
               sortOrder={sortOrder}
               searchTerm={searchTerm}
               className={
-                "grid md:grid-flow-row md:grid-cols-2 lg:grid-cols-2 sm:grid-cols-2 md:gap-2 gap-4 justify-end"
+                "grid md:grid-flow-row md:grid-cols-2 lg:grid-cols-2 sm:grid-cols-2 md:gap-2 gap-4 justify-end w-full"
               }
             />
           </div>
